@@ -1,3 +1,15 @@
 page-home {
+  .swiper-pagination-bullet-active {
+    background: #A713E8;
+  }
+
+  //ion-slide {
+  //    background-color: #32db64;
+  //}
+
+  ion-slide img {
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+  }
 
 }
