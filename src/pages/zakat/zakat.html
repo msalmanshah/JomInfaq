@@ -14,40 +14,36 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding>
-      <ion-item  color="lightgreen">
-        <h2>Perlukan Zakat?</h2>
-      </ion-item>
-      <ion-item-options>
-        <button ion-button color="danger">
-          <ion-icon name="arrow-round-forward"></ion-icon>
-          Mohon Sekarang
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+    <button ion-item>
+    Skim Infaq (Zakat Pendapatan Melalui Potongan Gaji)
+    </button>
+    <button ion-item>
+    Borang Bantuan Zakat
+    </button>
   </ion-list>
   <ion-card>
-    <img src="../assets/img/zakat.png"/>
-    <ion-card-header>
-      PERLUKAN ZAKAT?
-    </ion-card-header>
-    <ion-row>
-      <ion-col text-right>
-        <button ion-button clear small>MOHON SEKARANG!</button>
-      </ion-col>
-    </ion-row>
+    <ion-card-content>
+      ” (Mereka tetap tinggal) tetapi Rasulullah dan orang-orang yang beriman bersamanya, berjihad dengan harta benda dan jiwa mereka itulah orang-orang yang mendapat kelebihan dan mereka itulah juga yang berjaya.     ”
+      [At-Taubah : 88]
+    </ion-card-content>
   </ion-card>
+  <ion-item>
+  <ion-label>ZAKAT</ion-label>
+  <ion-select [(ngModel)]="zakattype">
+    <ion-option value="alfitr">FITRAH</ion-option>
+    <ion-option value="perniagaan">PERNIAGAAN</ion-option>
+    <ion-option value="kwsp">KWSP</ion-option>
+    <ion-option value="saham">SAHAM</ion-option>
+    <ion-option value="pendapatan">PENDAPATAN</ion-option>
+    <ion-option value="wang">WANG SIMPANAN</ion-option>
+    <ion-option value="ternakan">TERNAKAN</ion-option>
+    <ion-option value="emas">EMAS DAN PERAK</ion-option>
+    <ion-option value="pertanian">PERTANIAN</ion-option>
+  </ion-select>
+  </ion-item>
 
-  <ion-card>
-    <img src="../assets/img/bayarzakat.jpg"/>
-    <ion-card-header>
-      AYUH BAYAR ZAKAT!
-    </ion-card-header>
-    <ion-row>
-      <ion-col text-right>
-        <button ion-button clear small>TERUSKAN</button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+  <button ion-button color="secondary" block>BAYAR ZAKAT</button>
+
+
 
 </ion-content>
