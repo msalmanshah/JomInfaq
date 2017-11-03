@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons start>
+    <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -15,10 +15,12 @@
 <ion-content padding>
   <ion-list>
     <button ion-item>
-    Skim Infaq (Zakat Pendapatan Melalui Potongan Gaji)
+      <ion-icon name="document" item-start></ion-icon>
+      Skim Infaq
     </button>
     <button ion-item>
-    Borang Bantuan Zakat
+      <ion-icon name="paper" item-start></ion-icon>
+      Borang Bantuan Zakat
     </button>
   </ion-list>
   <ion-card>
@@ -28,18 +30,18 @@
     </ion-card-content>
   </ion-card>
   <ion-item>
-  <ion-label>ZAKAT</ion-label>
-  <ion-select [(ngModel)]="zakattype">
-    <ion-option value="alfitr">FITRAH</ion-option>
-    <ion-option value="perniagaan">PERNIAGAAN</ion-option>
-    <ion-option value="kwsp">KWSP</ion-option>
-    <ion-option value="saham">SAHAM</ion-option>
-    <ion-option value="pendapatan">PENDAPATAN</ion-option>
-    <ion-option value="wang">WANG SIMPANAN</ion-option>
-    <ion-option value="ternakan">TERNAKAN</ion-option>
-    <ion-option value="emas">EMAS DAN PERAK</ion-option>
-    <ion-option value="pertanian">PERTANIAN</ion-option>
-  </ion-select>
+    <ion-label>ZAKAT</ion-label>
+    <ion-select [(ngModel)]="zakattype">
+      <ion-option value="alfitr">FITRAH</ion-option>
+      <ion-option value="perniagaan">PERNIAGAAN</ion-option>
+      <ion-option value="kwsp">KWSP</ion-option>
+      <ion-option value="saham">SAHAM</ion-option>
+      <ion-option value="pendapatan">PENDAPATAN</ion-option>
+      <ion-option value="wang">WANG SIMPANAN</ion-option>
+      <ion-option value="ternakan">TERNAKAN</ion-option>
+      <ion-option value="emas">EMAS DAN PERAK</ion-option>
+      <ion-option value="pertanian">PERTANIAN</ion-option>
+    </ion-select>
   </ion-item>
 
   <button ion-button color="secondary" block>BAYAR ZAKAT</button>

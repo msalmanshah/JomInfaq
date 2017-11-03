@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pembayaran</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>No HP</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>NAMA</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>EMAIL</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+
+    <button ion-button color="info">TERUSKAN PEMBAYARAN</button>
+    <button ion-button color="danger" (click)="onClose()">Close</button>
+
+  </ion-list>
+
+</ion-content>

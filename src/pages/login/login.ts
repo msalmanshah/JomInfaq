@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Sautm } from './sautm/sautm';
-
 @IonicPage()
 @Component({
-  selector: 'page-infaq',
-  templateUrl: 'infaq.html',
+  selector: 'page-login',
+  templateUrl: 'login.html',
 })
-export class InfaqPage {
-  sautm = Sautm;
+export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginPage');
+  }
 
 }

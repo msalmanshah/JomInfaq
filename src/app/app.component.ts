@@ -8,6 +8,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ZakatPage } from '../pages/zakat/zakat';
 import { FidyahPage } from '../pages/fidyah/fidyah';
 import { InfaqPage } from '../pages/infaq/infaq';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,6 +20,9 @@ export class MyApp {
   zakatPage = ZakatPage;
   fidyahPage = FidyahPage;
   infaqPage = InfaqPage;
+  loginPage = LoginPage;
+  registerPage = RegisterPage;
+  
   @ViewChild('nav') nav:NavController;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl:MenuController) {

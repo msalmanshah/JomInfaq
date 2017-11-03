@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons start>
+    <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -11,25 +11,109 @@
 
 </ion-header>
 
-<ion-content class="card-background-page">
-    <ion-card>
-      <img src="../assets/img/skutm.jpg"/>
-      <div class="card-title">Sekolah Agama UTM</div>
-      <div class="card-subtitle">Urgent needed</div>
-    </ion-card>
-    <ion-card>
-      <img src="../assets/img/ramadan.jpg"/>
-      <div class="card-title">Ramadhan Fund</div>
-      <div class="card-subtitle">Urgent needed</div>
-    </ion-card>
-    <ion-card>
-      <img src="../assets/img/masjidderma.jpg"/>
-      <div class="card-title">Tabung Masjid</div>
-      <div class="card-subtitle">Urgent needed</div>
-    </ion-card>
-    <ion-card>
-      <img src="../assets/img/masjid.jpg"/>
-      <div class="card-title">Jumaat Collection</div>
-      <div class="card-subtitle">Urgent needed</div>
-    </ion-card>
+<ion-content padding>
+  <ion-card>
+    <img src="../assets/img/skutm.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+        Tabung Pembangunan Sekolah Agama UTM
+      </ion-card-title>
+      <p>
+        Tabung Pembangunan Sekolah Agama UTM ditubuhkan bertujuan mengumpul dana bagi pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu memandangkan bangunan sedia ada yang telah berusia 30 tahun kini dalam keadaan daif, uzur dan tidak selamat untuk digunakan terutama tingkat atas bangunan Blok A SAUTM.
+      </p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="information-circle"></ion-icon>
+        <div>Lebih Lanjut</div>
+      </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small [navPush]="sautm">
+        <ion-icon name="share-alt"></ion-icon>
+        <div>Sedekah Sekarang</div>
+      </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card>
+    <img src="../assets/img/ramadan.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+        Sumbangan Dana Ramadhan
+      </ion-card-title>
+      <p>
+        Pusat Islam UTM mengusahakan Dana Ramadan bagi aktiviti Ramadan seperti Sahur, Khatam Al-Quran, Majlis Ilmu dan Sumbangan Sedekah Fakir Miskin / Anak Yatim
+      </p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="information-circle"></ion-icon>
+        <div>Lebih Lanjut</div>
+      </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="share-alt"></ion-icon>
+        <div>Sedekah Sekarang</div>
+      </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card>
+    <img src="../assets/img/masjidderma.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+        Tabung Masjid
+      </ion-card-title>
+      <p>
+        Pembinaan Masjid Sultan Ismail bermula pada tahun 1986 dan telah siap pada tahun 1990 dengan belanja hampir RM 19 juta. Masjid ini telah dirasmikan oleh DYMM Sultan Iskandar Ibni Almarhum Sultan Ismail, Sultan Johor, pada 23 Ogos 1991.
+      </p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="information-circle"></ion-icon>
+        <div>Lebih Lanjut</div>
+      </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="share-alt"></ion-icon>
+        <div>Sedekah Sekarang</div>
+      </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card>
+    <img src="../assets/img/masjid.jpg" />
+    <ion-card-content>
+      <ion-card-title>
+        Tabung Jumaat
+      </ion-card-title>
+      <p>
+        “Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya. Sedekah pada hari itu dibandingkan dengan hari-hari lainnya dalam seminggu, seperti sedekah pada bulan Ramadhan jika dibandingkan dengan seluruh bulan lainnya.” (Ibnul Qayyim, Zadul Ma’ad)
+      </p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="information-circle"></ion-icon>
+        <div>Lebih Lanjut</div>
+      </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+        <ion-icon name="share-alt"></ion-icon>
+        <div>Sedekah Sekarang</div>
+      </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
 </ion-content>

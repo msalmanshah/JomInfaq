@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Sekolah Agama UTM</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+  <ion-label>Sekolah Agama UTM</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>RM</ion-label>
+    <ion-select [(ngModel)]="amount">
+      <ion-option selected value="10">10.00</ion-option>
+      <ion-option value="20">20.00</ion-option>
+      <ion-option value="50">50.00</ion-option>
+      <ion-option value="100">100.00</ion-option>
+      <ion-option value="200">200.00</ion-option>
+      <ion-option value="500">500.00</ion-option>
+      <ion-option value="1000">1000.00</ion-option>
+      <ion-option value="2000">2000.00</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-textarea [(ngModel)]="doa" placeholder="Tuliskan doa terbaikmu"></ion-textarea>
+  </ion-item>
+  <button ion-button color="secondary" (click)="onPay()" block>TERUSKAN</button>
+
+</ion-content>

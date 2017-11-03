@@ -10,6 +10,11 @@ import { ZakatPage } from '../pages/zakat/zakat';
 import { FidyahPage } from '../pages/fidyah/fidyah';
 import { InfaqPage } from '../pages/infaq/infaq';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { PaymentPage } from '../pages/payment/payment';
+
+import { Sautm } from '../pages/infaq/sautm/sautm';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,11 @@ import { TabsPage } from '../pages/tabs/tabs';
     ZakatPage,
     FidyahPage,
     InfaqPage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    RegisterPage,
+    Sautm,
+    PaymentPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +40,11 @@ import { TabsPage } from '../pages/tabs/tabs';
     ZakatPage,
     FidyahPage,
     InfaqPage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    RegisterPage,
+    Sautm,
+    PaymentPage
   ],
   providers: [
     StatusBar,
