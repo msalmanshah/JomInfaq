@@ -18,7 +18,7 @@
       <ion-icon name="document" item-start></ion-icon>
       Skim Infaq
     </button>
-    <button ion-item>
+    <button ion-item (click)="onApply()">
       <ion-icon name="paper" item-start></ion-icon>
       Borang Bantuan Zakat
     </button>
@@ -43,9 +43,10 @@
       <ion-option value="pertanian">PERTANIAN</ion-option>
     </ion-select>
   </ion-item>
-
+  <br>
+  <br>
+  <button ion-button color="secondary" block>KIRA ZAKAT</button>
+  <br>
   <button ion-button color="secondary" block>BAYAR ZAKAT</button>
-
-
 
 </ion-content>

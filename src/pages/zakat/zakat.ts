@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ZakatPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { ApplyPage } from './apply/apply'
 
 @IonicPage()
 @Component({
@@ -15,11 +9,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ZakatPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl:ModalController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ZakatPage');
+  onApply(){
+    const modal = this.modalCtrl.create(ApplyPage);
+    modal.present();
   }
 
 }

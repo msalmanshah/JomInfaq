@@ -15,6 +15,7 @@ import { RegisterPage } from '../pages/register/register';
 import { PaymentPage } from '../pages/payment/payment';
 
 import { Sautm } from '../pages/infaq/sautm/sautm';
+import { ApplyPage } from '../pages/zakat/apply/apply';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { Sautm } from '../pages/infaq/sautm/sautm';
     LoginPage,
     RegisterPage,
     Sautm,
-    PaymentPage
+    PaymentPage,
+    ApplyPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { Sautm } from '../pages/infaq/sautm/sautm';
     LoginPage,
     RegisterPage,
     Sautm,
-    PaymentPage
+    PaymentPage,
+    ApplyPage
   ],
   providers: [
     StatusBar,
