@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Pembayaran Zakat</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Jenis Zakat</ion-label>
+    <ion-select [(ngModel)]="zakattype" readonly>
+      <ion-option selected value="pendapatan">Pendapatan</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Jumlah Zakat Tahunan (RM)</ion-label>
+    <ion-input type="number" [(ngModel)] = "totaltahun" placeholder="0"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Cara Bayaran</ion-label>
+  </ion-item>
+  <br>
+  <button ion-button color="primary" (click)="onPay()" block>TERUSKAN</button>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <img style="height:50px;" src="assets/img/utmlogo.png" />
+      </ion-col>
+      <ion-col col-6>
+        <img style="height:60px;" src="assets/img/fpx.jpg" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

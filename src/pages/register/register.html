@@ -1,38 +1,48 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Cipta Akaun</ion-title>
+    <ion-title>Daftar</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
+  <form #f="ngForm" (ngSubmit)="onSignUp(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Nama</ion-label>
+        <ion-input type="text" ngModel name="name" placeholder="Nama penuh" required></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Nama"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label fixed>Nombor Telefon</ion-label>
+        <ion-input type="tel" ngModel name="tel" placeholder="Nombor mudah alih" required></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="email" placeholder="Email"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label fixed>E-mel</ion-label>
+        <ion-input type="email" ngModel name="email" placeholder="E-mel" required></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Nombor telefon"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label fixed>Kata Laluan</ion-label>
+        <ion-input type="password" ngModel name="password" placeholder="Kata Laluan baru" required [minlength]="6"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Kata laluan baru"></ion-input>
-    </ion-item>
-
-    <button ion-button full>Cipta Akaun</button>
-
-  </ion-list>
-
+      <ion-item>
+        <ion-label fixed>Jantina</ion-label>
+        <ion-select ngModel name="gender">
+          <ion-option value="f">Perempuan</ion-option>
+          <ion-option value="m">Lelaki</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <button ion-button block type="submit" [disabled]="!f.valid">CIPTA AKAUN</button>
+  </form>
 </ion-content>

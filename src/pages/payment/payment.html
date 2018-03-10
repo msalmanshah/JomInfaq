@@ -1,33 +1,39 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Pembayaran</ion-title>
+  <ion-navbar color="primary">
+    <ion-buttons left>
+      <button ion-button (click)="onClose()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>UTM FPX</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <ion-list>
+  <img src="assets/img/utmfpx.png">
 
-    <ion-item>
-      <ion-label stacked>No HP</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label stacked>Deskripsi</ion-label>
+    <ion-input type="text" [(ngModel)]="desc"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label stacked>NAMA</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-label stacked>Nombor Identiti</ion-label>
+    <ion-input type="text" [(ngModel)]="icno"></ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-label stacked>EMAIL</ion-label>
-      <ion-input type="email"></ion-input>
-    </ion-item>
-    <br>
-    <button ion-button color="info">TERUSKAN PEMBAYARAN</button>
-    <button ion-button color="danger" (click)="onClose()">KEMBALI</button>
+  <ion-item>
+    <ion-label stacked>Nama</ion-label>
+    <ion-input type="text" [(ngModel)]="name"></ion-input>
+  </ion-item>
 
-  </ion-list>
+  <ion-item>
+    <ion-label stacked>Jumlah (RM)</ion-label>
+    <ion-input type="text" [(ngModel)]="amt"></ion-input>
+  </ion-item>
+  <hr>
+  <button ion-button color="primary" (click)="presentToast()" block>CONFIRM</button>
 
 </ion-content>

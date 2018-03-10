@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { ApplyPage } from './apply/apply'
+import { ApplyPage } from './apply/apply';
+import { CalcPage } from './calc/calc';
+import { Payzakat } from './payzakat/payzakat';
 
 @IonicPage()
 @Component({
@@ -8,6 +10,8 @@ import { ApplyPage } from './apply/apply'
   templateUrl: 'zakat.html',
 })
 export class ZakatPage {
+
+  zakattype:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl:ModalController) {
   }
@@ -17,4 +21,14 @@ export class ZakatPage {
     modal.present();
   }
 
+  onCalc(){
+    const modal = this.modalCtrl.create(CalcPage);
+    modal.present();
+  }
+
+  onLoad(zakat){
+    this.navCtrl.push(Payzakat,{
+      zakattype: this.zakattype
+    });
+  }
 }

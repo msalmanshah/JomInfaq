@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -19,11 +19,21 @@
     </ion-card-content>
   </ion-card>
   <ion-item>
-    <ion-input type="number" placeholder="Bilangan hari tinggal puasa"></ion-input>
+    <ion-input [(ngModel)]="fidyahhari" type="number" placeholder="Bilangan hari tinggal puasa" (ngModelChange) = "onChange()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>Tahun</ion-label>
+    <ion-input [(ngModel)]="fidyahtahun" type="number" (ngModelChange) = "onChange()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label color="primary" stacked>RM</ion-label>
+    <ion-input [(ngModel)]="fidyahamt" readonly></ion-input>
   </ion-item>
   <br>
   <br>
-  <button ion-button color="secondary" block>BAYAR FIDYAH</button>
+  <button ion-button color="primary" block (click)="onLoad()">BAYAR FIDYAH</button>
 
 
 </ion-content>

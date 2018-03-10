@@ -1,19 +1,18 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+      <button ion-button (click)="onClose()">
       </button>
     </ion-buttons>
-    <ion-title>Sekolah Agama UTM</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
   <ion-item>
-    <ion-label>Sekolah Agama UTM</ion-label>
+    <ion-label>{{name}}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label>RM</ion-label>
@@ -32,6 +31,17 @@
     <ion-textarea [(ngModel)]="doa" placeholder="Tuliskan doa terbaikmu"></ion-textarea>
   </ion-item>
   <br>
-  <button ion-button color="secondary" (click)="onPay()" block>TERUSKAN</button>
+  <button ion-button color="primary" (click)="onPay()" block>TERUSKAN</button>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <img style="height:50px;" src="assets/img/utmlogo.png" />
+      </ion-col>
+      <ion-col col-6>
+        <img style="height:60px;" src="assets/img/fpx.jpg" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

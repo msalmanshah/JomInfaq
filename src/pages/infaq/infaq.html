@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -11,26 +11,67 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="card-background-page">
   <ion-card>
-    <img src="assets/img/skutm.jpg" />
-    <ion-card-content>
+    <img src="assets/img/skutm.jpg" style="height:200px;"/>
+    <div class="card-title">Tabung Pembangunan Sekolah Agama UTM</div>
+
+    <!-- <ion-card-content>
       <ion-card-title>
         Tabung Pembangunan Sekolah Agama UTM
       </ion-card-title>
-      <p>
-        Tabung Pembangunan Sekolah Agama UTM ditubuhkan bertujuan mengumpul dana bagi pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu memandangkan bangunan sedia ada yang telah berusia 30 tahun kini dalam keadaan daif, uzur dan tidak selamat untuk digunakan terutama tingkat atas bangunan Blok A SAUTM.
-      </p>
-    </ion-card-content>
+    </ion-card-content> -->
+    <!-- <ion-note>
+      RM500 daripada RM1000 tercapai.
+    </ion-note>
+    <hr>
+    <ion-note>
+      Sebanyak 250 orang telah menderma.
+    </ion-note>
+
     <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
+      <div class="progress-bars blue stripes">
+        <span [style.width]="workoutProgress"></span>
+      </div>
+    </ion-row> -->
+    <ion-row>
+      <progress-bar [progress]="skutmprogress" style="width: 100%;"></progress-bar>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>
+        <button ion-button icon-left clear small (click)="presentAlert('Tabung Pembangunan Sekolah Agama UTM','Tabung Pembangunan Sekolah Agama UTM ditubuhkan bertujuan mengumpul dana bagi pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu memandangkan bangunan sedia ada yang telah berusia 30 tahun kini dalam keadaan daif, uzur dan tidak selamat untuk digunakan terutama tingkat atas bangunan Blok A SAUTM.')" >
+          <ion-icon name="information-circle"></ion-icon>
+          <div>Lebih Lanjut</div>
+        </button>
+      </ion-col>
+      <ion-col col-7>
+        <button ion-button icon-left clear small (click)="onLoad('Sekolah Agama UTM')">
+          <ion-icon name="share-alt"></ion-icon>
+          <div>Sedekah Sekarang</div>
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-card>
+
+
+
+  <ion-card>
+    <img src="assets/img/ramadan.jpg" style="height:200px;"/>
+    <div class="card-title">Sumbangan Dana Ramadhan</div>
+    <ion-row>
+      <progress-bar [progress]="ramadhanprogress" style="width: 100%;"></progress-bar>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>
+        <button ion-button icon-left clear small (click)="presentAlert('Sumbangan Dana Ramadhan','Pusat Islam UTM mengusahakan Dana Ramadan bagi aktiviti Ramadan seperti Sahur, Khatam Al-Quran, Majlis Ilmu dan Sumbangan Sedekah Fakir Miskin / Anak Yatim')">
         <ion-icon name="information-circle"></ion-icon>
         <div>Lebih Lanjut</div>
       </button>
       </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small [navPush]="sautm">
+      <ion-col col-7>
+        <button ion-button icon-left clear small (click)="onLoad('Dana Ramadhan')">
         <ion-icon name="share-alt"></ion-icon>
         <div>Sedekah Sekarang</div>
       </button>
@@ -39,24 +80,20 @@
   </ion-card>
 
   <ion-card>
-    <img src="assets/img/ramadan.jpg" />
-    <ion-card-content>
-      <ion-card-title>
-        Sumbangan Dana Ramadhan
-      </ion-card-title>
-      <p>
-        Pusat Islam UTM mengusahakan Dana Ramadan bagi aktiviti Ramadan seperti Sahur, Khatam Al-Quran, Majlis Ilmu dan Sumbangan Sedekah Fakir Miskin / Anak Yatim
-      </p>
-    </ion-card-content>
+    <img src="assets/img/masjidderma.jpg"  style="height:200px;"/>
+    <div class="card-title">Tabung Masjid</div>
     <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
-        <ion-icon name="information-circle"></ion-icon>
-        <div>Lebih Lanjut</div>
-      </button>
+      <progress-bar [progress]="masjid" style="width: 100%;"></progress-bar>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>
+        <button ion-button icon-left clear small (click)="presentAlert('Tabung Masjid','Pembinaan Masjid Sultan Ismail bermula pada tahun 1986 dan telah siap pada tahun 1990 dengan belanja hampir RM 19 juta. Masjid ini telah dirasmikan oleh DYMM Sultan Iskandar Ibni Almarhum Sultan Ismail, Sultan Johor, pada 23 Ogos 1991.')">
+          <ion-icon name="information-circle"></ion-icon>
+          <div>Lebih Lanjut</div>
+        </button>
       </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
+      <ion-col col-7>
+        <button ion-button icon-left clear small (click)="onLoad('Tabung Masjid')">
         <ion-icon name="share-alt"></ion-icon>
         <div>Sedekah Sekarang</div>
       </button>
@@ -65,24 +102,20 @@
   </ion-card>
 
   <ion-card>
-    <img src="assets/img/masjidderma.jpg" />
-    <ion-card-content>
-      <ion-card-title>
-        Tabung Masjid
-      </ion-card-title>
-      <p>
-        Pembinaan Masjid Sultan Ismail bermula pada tahun 1986 dan telah siap pada tahun 1990 dengan belanja hampir RM 19 juta. Masjid ini telah dirasmikan oleh DYMM Sultan Iskandar Ibni Almarhum Sultan Ismail, Sultan Johor, pada 23 Ogos 1991.
-      </p>
-    </ion-card-content>
+    <img src="assets/img/masjid.jpg" style="height:200px;"/>
+    <div class="card-title">Tabung Jumaat</div>
     <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
+      <progress-bar [progress]="jumaat" style="width: 100%;"></progress-bar>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>
+        <button ion-button icon-left clear small (click)="presentAlert('Tabung Jumaat','“Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya. Sedekah pada hari itu dibandingkan dengan hari-hari lainnya dalam seminggu, seperti sedekah pada bulan Ramadhan jika dibandingkan dengan seluruh bulan lainnya.” (Ibnul Qayyim, Zadul Ma’ad)')">
         <ion-icon name="information-circle"></ion-icon>
         <div>Lebih Lanjut</div>
       </button>
       </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
+      <ion-col col-7>
+        <button ion-button icon-left clear small (click)="onLoad('Tabung Jumaat')">
         <ion-icon name="share-alt"></ion-icon>
         <div>Sedekah Sekarang</div>
       </button>
@@ -91,24 +124,20 @@
   </ion-card>
 
   <ion-card>
-    <img src="assets/img/masjid.jpg" />
-    <ion-card-content>
-      <ion-card-title>
-        Tabung Jumaat
-      </ion-card-title>
-      <p>
-        “Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya. Sedekah pada hari itu dibandingkan dengan hari-hari lainnya dalam seminggu, seperti sedekah pada bulan Ramadhan jika dibandingkan dengan seluruh bulan lainnya.” (Ibnul Qayyim, Zadul Ma’ad)
-      </p>
-    </ion-card-content>
+    <img src="assets/img/kebajikan.jpg" style="height:200px;"/>
+    <div class="card-title">Kebajikan Mahasiswa</div>
     <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
+      <progress-bar [progress]="kebajikan" style="width: 100%;"></progress-bar>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5>
+        <button ion-button icon-left clear small (click)="presentAlert('Tabung Jumaat','“Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya. Sedekah pada hari itu dibandingkan dengan hari-hari lainnya dalam seminggu, seperti sedekah pada bulan Ramadhan jika dibandingkan dengan seluruh bulan lainnya.” (Ibnul Qayyim, Zadul Ma’ad)')">
         <ion-icon name="information-circle"></ion-icon>
         <div>Lebih Lanjut</div>
       </button>
       </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
+      <ion-col col-7>
+        <button ion-button icon-left clear small (click)="onLoad('Kebajikan Mahasiswa')">
         <ion-icon name="share-alt"></ion-icon>
         <div>Sedekah Sekarang</div>
       </button>

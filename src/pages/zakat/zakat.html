@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons left>
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
@@ -14,10 +14,10 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item>
+    <!-- <button ion-item>
       <ion-icon name="document" item-start></ion-icon>
       Skim Infaq
-    </button>
+    </button> -->
     <button ion-item (click)="onApply()">
       <ion-icon name="paper" item-start></ion-icon>
       Borang Bantuan Zakat
@@ -29,7 +29,33 @@
       [At-Taubah : 88]
     </ion-card-content>
   </ion-card>
-  <ion-item>
+
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="link" item-start></ion-icon>
+      <a class="plainText" href="https://my.utm.my">Skim Infaq UTM</a>
+      <p>Login > Caruman Zakat > Bayaran </p>
+    </button>
+  </ion-list>
+
+  <ion-card style="background-color: #f44336 !important;">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <ion-icon name="information-circle" style="font-size: 40px;color: white;vertical-align:middle;"></ion-icon>
+          </ion-col>
+          <ion-col col-10>
+            <p style="color: white;" align="justify">Aplikasi Jom Infaq hanya menyediakan pembayaran zakat melalui Skim Infaq UTM dan hanya untuk Staf UTM sahaja buat masa ini.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+  </ion-card>
+
+
+
+  <!-- <ion-item>
     <ion-label>ZAKAT</ion-label>
     <ion-select [(ngModel)]="zakattype">
       <ion-option value="alfitr">FITRAH</ion-option>
@@ -45,8 +71,8 @@
   </ion-item>
   <br>
   <br>
-  <button ion-button color="secondary" block>KIRA ZAKAT</button>
+  <button ion-button color="primary" block (click)="onCalc()">KALKULATOR ZAKAT</button>
   <br>
-  <button ion-button color="secondary" block>BAYAR ZAKAT</button>
+  <button ion-button color="primary" block (click)="onLoad()">BAYAR ZAKAT</button> -->
 
 </ion-content>
