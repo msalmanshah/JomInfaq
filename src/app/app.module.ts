@@ -29,18 +29,17 @@ import { HttpModule } from '@angular/http';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 // Import the AF2 Module
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-// AF2 Settings
-// export const firebaseConfig = {
-//   apiKey: "AIzaSyBbid2-JCUq04POXIHvjTGJkTr-lmCM-uA",
-//   authDomain: "jominfaq2017.firebaseapp.com",
-//   databaseURL: "https://jominfaq2017.firebaseio.com",
-//   projectId: "jominfaq2017",
-//   storageBucket: "jominfaq2017.appspot.com",
-//   messagingSenderId: "952108736291"
-// };
+import { FIREBASE_CONFIG } from './firebase.credential';
+
+import { UserService } from '../services/user.service';
+import { Chart } from '../pages/infaq/chart/chart';
+
+import { ChartsModule } from 'ng2-charts';
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -54,6 +53,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     RegisterPage,
     ProfilePage,
     Sautm,
+    Chart,
     Payzakat,
     Payfidyah,
     PaymentPage,
@@ -64,9 +64,11 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
-    // AngularFireModule.initializeApp(firebaseConfig),
-    // AngularFireDatabaseModule
+    HttpModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule,
+    ChartsModule,
+    RoundProgressModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,6 +82,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     RegisterPage,
     ProfilePage,
     Sautm,
+    Chart,
     Payzakat,
     Payfidyah,
     PaymentPage,
@@ -91,6 +94,8 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     SplashScreen,
     EmailComposer,
     AuthService,
+    UserService,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

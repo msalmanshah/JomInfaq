@@ -39,7 +39,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-5>
-        <button ion-button icon-left clear small (click)="presentAlert('Tabung Pembangunan Sekolah Agama UTM','Tabung Pembangunan Sekolah Agama UTM ditubuhkan bertujuan mengumpul dana bagi pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu memandangkan bangunan sedia ada yang telah berusia 30 tahun kini dalam keadaan daif, uzur dan tidak selamat untuk digunakan terutama tingkat atas bangunan Blok A SAUTM.')" >
+        <button ion-button icon-left clear small (click)="presentModal('Tabung Pembangunan Sekolah Agama UTM','Tabung Pembangunan Sekolah Agama UTM ditubuhkan bertujuan mengumpul dana bagi pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu.',skutmprogress)" >
           <ion-icon name="information-circle"></ion-icon>
           <div>Lebih Lanjut</div>
         </button>
@@ -65,7 +65,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-5>
-        <button ion-button icon-left clear small (click)="presentAlert('Sumbangan Dana Ramadhan','Pusat Islam UTM mengusahakan Dana Ramadan bagi aktiviti Ramadan seperti Sahur, Khatam Al-Quran, Majlis Ilmu dan Sumbangan Sedekah Fakir Miskin / Anak Yatim')">
+        <button ion-button icon-left clear small (click)="presentModal('Sumbangan Dana Ramadhan','Pusat Islam UTM mengusahakan Dana Ramadan bagi aktiviti Ramadan seperti Sahur, Khatam Al-Quran, Majlis Ilmu dan Sumbangan Sedekah Fakir Miskin / Anak Yatim',ramadhanprogress)">
         <ion-icon name="information-circle"></ion-icon>
         <div>Lebih Lanjut</div>
       </button>
@@ -87,7 +87,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-5>
-        <button ion-button icon-left clear small (click)="presentAlert('Tabung Masjid','Pembinaan Masjid Sultan Ismail bermula pada tahun 1986 dan telah siap pada tahun 1990 dengan belanja hampir RM 19 juta. Masjid ini telah dirasmikan oleh DYMM Sultan Iskandar Ibni Almarhum Sultan Ismail, Sultan Johor, pada 23 Ogos 1991.')">
+        <button ion-button icon-left clear small (click)="presentModal('Tabung Masjid','Pembinaan Masjid Sultan Ismail bermula pada tahun 1986 dan telah siap pada tahun 1990 dengan belanja hampir RM 19 juta.',masjid)">
           <ion-icon name="information-circle"></ion-icon>
           <div>Lebih Lanjut</div>
         </button>
@@ -109,7 +109,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-5>
-        <button ion-button icon-left clear small (click)="presentAlert('Tabung Jumaat','“Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya. Sedekah pada hari itu dibandingkan dengan hari-hari lainnya dalam seminggu, seperti sedekah pada bulan Ramadhan jika dibandingkan dengan seluruh bulan lainnya.” (Ibnul Qayyim, Zadul Ma’ad)')">
+        <button ion-button icon-left clear small (click)="presentModal('Tabung Jumaat','Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya.',jumaat)">
         <ion-icon name="information-circle"></ion-icon>
         <div>Lebih Lanjut</div>
       </button>
@@ -131,7 +131,7 @@
     </ion-row>
     <ion-row>
       <ion-col col-5>
-        <button ion-button icon-left clear small (click)="presentAlert('Tabung Jumaat','“Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya. Sedekah pada hari itu dibandingkan dengan hari-hari lainnya dalam seminggu, seperti sedekah pada bulan Ramadhan jika dibandingkan dengan seluruh bulan lainnya.” (Ibnul Qayyim, Zadul Ma’ad)')">
+        <button ion-button icon-left clear small (click)="presentModal('Kebajikan Mahasiswa','Bertanggungjawab untuk mengagihkan dana kepada mahasiswa UTM yang tergolong dalam golongan asnaf.',kebajikan)">
         <ion-icon name="information-circle"></ion-icon>
         <div>Lebih Lanjut</div>
       </button>

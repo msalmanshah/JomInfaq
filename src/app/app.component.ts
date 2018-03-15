@@ -15,6 +15,8 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { AuthService } from '../services/auth';
 
+import { FIREBASE_CONFIG } from './firebase.credential';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -36,10 +38,7 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl:MenuController, private authService:AuthService) {
 
-    firebase.initializeApp({
-      apiKey: "AIzaSyBbid2-JCUq04POXIHvjTGJkTr-lmCM-uA",
-      authDomain: "jominfaq2017.firebaseapp.com"
-    });
+    firebase.initializeApp(FIREBASE_CONFIG);
 
     firebase.auth().onAuthStateChanged( user => {
         if (user) {

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { LoadingController, AlertController } from 'ionic-angular';
+import { LoadingController, AlertController, NavController, NavParams } from 'ionic-angular';
 
 import { AuthService } from '../../services/auth';
 
+import { RegisterPage } from '../register/register';
+import { Http, Response } from '@angular/http';
+import { User } from '../../models/user/user.model';
 
 @IonicPage()
 @Component({
@@ -12,9 +15,20 @@ import { AuthService } from '../../services/auth';
 })
 export class LoginPage {
 
+  key:string;
 
-  constructor( private authService: AuthService, private loadingCtrl:LoadingController, private alertCtrl:AlertController) {
+  user : User = {
+    name : '',
+    tel: '',
+    email : '',
+    password : '',
+    gender : ''
+  }    
 
+
+  constructor(public navCtrl: NavController, private authService: AuthService, private loadingCtrl:LoadingController, private alertCtrl:AlertController, private navParams:NavParams, private http:Http) {
+    this.key = this.navParams.get('key');
+    this.user = this.navParams.get('userInfo');
   }
 
   onSignIn(form: NgForm){
@@ -26,6 +40,16 @@ export class LoginPage {
     this.authService.signin(form.value.email,form.value.password)
       .then(data => {
         loading.dismiss();
+        this.authService.getActiveUser().getToken()
+        .then(
+          (token:string) => {
+            const userId = this.authService.getActiveUser().uid;
+            this.http.put('https://jominfaq2017.firebaseio.com/'+userId+'/info.json?auth='+token, this.user)
+            .map((response:Response) => {
+              return response.json();
+            });
+          }
+        )
       })
       .catch(error => {
         loading.dismiss();
@@ -36,5 +60,9 @@ export class LoginPage {
         });
         alert.present();
       });
+  }
+
+  Register() {
+    this.navCtrl.push(RegisterPage);
   }
 }

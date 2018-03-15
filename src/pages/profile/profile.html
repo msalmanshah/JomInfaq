@@ -31,6 +31,13 @@
         </ion-card-content>
     </ion-card>
 
+    <ion-item>
+      {{currentUser.name}}
+    </ion-item>
+
+    <ion-item *ngFor = "let user of activeUser$ | async">
+      {{user.name}}
+    </ion-item>
 
     <ion-list>
       <ion-item-divider>

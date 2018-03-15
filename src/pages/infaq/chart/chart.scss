@@ -1,0 +1,47 @@
+page-chart {
+    .scroll-content {
+        background-color: map-get($colors, white);
+    }
+
+    ion-card-header {
+        font-weight: bold;
+    }
+
+    .donut-inner {
+        margin-top: -100px;
+        margin-bottom: 100px;
+     }
+     .donut-inner h5 {
+        margin-bottom: 5px;
+        margin-top: 0;
+     }
+     .donut-inner span {
+        font-size: 12px;
+     }
+
+     .trip-info {
+        .trip-image {
+          width: 100%;
+          height: 120px;
+          background-size: 100% auto;
+          background-position: center;
+          border-radius: 1rem 1rem 0 0;
+        }
+    
+        .trip-features {
+          ion-icon {
+            min-width: 1.5rem;
+            text-align: center;
+          }
+        }
+      }
+
+      .round {
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      .bcolor {
+        background-color: green;
+      }
+}

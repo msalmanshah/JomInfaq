@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { LoadingController, AlertController } from 'ionic-angular';
+// import { NgForm } from '@angular/forms';
+import { LoadingController, AlertController, NavController } from 'ionic-angular';
 
 import { AuthService } from '../../services/auth';
+import { User } from '../../models/user/user.model';
 
-import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
+import { UserService } from '../../services/user.service';
 
+import { LoginPage } from '../login/login';
 
-import 'rxjs/Rx';
+import { Http, Response } from '@angular/http';
 
-// import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-@Injectable()
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -19,25 +18,44 @@ import 'rxjs/Rx';
 })
 export class RegisterPage {
 
-  // user: AngularFireList<any>;
+  user : User = {
+    name : '',
+    tel: '',
+    email : '',
+    password : '',
+    gender : ''
+  }
 
-  constructor( private authService: AuthService, private loadingCtrl:LoadingController, private alertCtrl:AlertController, private http:Http) {
+  constructor(public navCtrl:NavController, private authService: AuthService, private loadingCtrl:LoadingController, private alertCtrl:AlertController, private userService: UserService, private http:Http) {
 
   }
 
-  onSignUp(form: NgForm){
+  onSignUp(user: User){
     const loading = this.loadingCtrl.create({
       content: 'Checking...'
     });
     loading.present();
 
 
-
-
-
-    this.authService.signup(form.value.email,form.value.password)
+    this.authService.signup(user.email,user.password)
       .then(data => {
         loading.dismiss();
+        this.authService.getActiveUser().getToken()
+        .then(
+          (token:string) => {
+            const userId = this.authService.getActiveUser().uid;
+            this.http.put('https://jominfaq2017.firebaseio.com/'+userId+'/info.json?auth='+token, this.user)
+            .map((response:Response) => {
+              return response.json();
+            });
+          }
+        )
+        // this.userService.addUser(user).then(ref=> {
+
+        // })
+        // this.navCtrl.push(LoginPage, {
+        //   userInfo : user 
+        // });
 
       })
       .catch(error => {
@@ -49,6 +67,10 @@ export class RegisterPage {
         });
         alert.present();
       });
+  }
+
+  Login() {
+    this.navCtrl.push(LoginPage);
   }
 
 }

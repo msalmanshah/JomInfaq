@@ -13,16 +13,16 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <!-- <button ion-item>
+  <!-- <ion-list>
+    <button ion-item>
       <ion-icon name="document" item-start></ion-icon>
       Skim Infaq
-    </button> -->
+    </button>
     <button ion-item (click)="onApply()">
       <ion-icon name="paper" item-start></ion-icon>
       Borang Bantuan Zakat
     </button>
-  </ion-list>
+  </ion-list> -->
   <ion-card>
     <ion-card-content>
       ” (Mereka tetap tinggal) tetapi Rasulullah dan orang-orang yang beriman bersamanya, berjihad dengan harta benda dan jiwa mereka itulah orang-orang yang mendapat kelebihan dan mereka itulah juga yang berjaya.     ”
@@ -31,9 +31,9 @@
   </ion-card>
 
   <ion-list>
-    <button ion-item>
+    <button ion-item (click)="Redirect()">
       <ion-icon name="link" item-start></ion-icon>
-      <a class="plainText" href="https://my.utm.my">Skim Infaq UTM</a>
+      <a>Skim Infaq UTM</a>
       <p>Login > Caruman Zakat > Bayaran </p>
     </button>
   </ion-list>
@@ -42,11 +42,11 @@
 
       <ion-grid>
         <ion-row>
-          <ion-col col-2>
-            <ion-icon name="information-circle" style="font-size: 40px;color: white;vertical-align:middle;"></ion-icon>
+          <ion-col col-1>
+            <ion-icon name="information-circle" style="font-size: 20px;color: white;vertical-align:middle;"></ion-icon>
           </ion-col>
-          <ion-col col-10>
-            <p style="color: white;" align="justify">Aplikasi Jom Infaq hanya menyediakan pembayaran zakat melalui Skim Infaq UTM dan hanya untuk Staf UTM sahaja buat masa ini.</p>
+          <ion-col col-11>
+            <p style="color: white;" align="justify">Perhatian: Hanya untuk Staf UTM sahaja!</p>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../../models/user/user.model';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth';
 
 /**
  * Generated class for the ProfilePage page.
@@ -15,7 +19,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  activeUser$ : Observable < User[] >;
+
+  currentUser : User = {
+    name : '',
+    tel: '',
+    email : '',
+    password : '',
+    gender : ''
+  };
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userlist:UserService, private auth:AuthService) {
+   this.activeUser$ = this.userlist.getUser().valueChanges();
+
   }
 
   ionViewDidLoad() {

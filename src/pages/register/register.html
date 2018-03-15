@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar color="primary">
     <ion-buttons left>
@@ -9,40 +9,82 @@
     <ion-title>Daftar</ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
+<ion-content class="auth-page">
+  <div class="login-content">
 
-<ion-content padding>
-  <form #f="ngForm" (ngSubmit)="onSignUp(f)">
-    <ion-list>
-      <ion-item>
-        <ion-label fixed>Nama</ion-label>
-        <ion-input type="text" ngModel name="name" placeholder="Nama penuh" required></ion-input>
-      </ion-item>
+    <!-- Logo -->
+    <div padding text-center>
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary" style="margin: 0px;">
+        <strong>JOM INFAQ</strong>
+      </h2>
+    </div>
 
-      <ion-item>
-        <ion-label fixed>Nombor Telefon</ion-label>
-        <ion-input type="tel" ngModel name="tel" placeholder="Nombor mudah alih" required></ion-input>
-      </ion-item>
+    <!-- Login form -->
+    <form class="list-form">
+      <ion-list>
+        <ion-item>
+          <ion-label >Nama</ion-label>
+          <ion-input type="text" [(ngModel)] ="user.name" name="name"  required></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label fixed>E-mel</ion-label>
-        <ion-input type="email" ngModel name="email" placeholder="E-mel" required></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label >Telefon</ion-label>
+          <ion-input type="tel" [(ngModel)] ="user.tel" name="tel"  required></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label fixed>Kata Laluan</ion-label>
-        <ion-input type="password" ngModel name="password" placeholder="Kata Laluan baru" required [minlength]="6"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label >E-mel</ion-label>
+          <ion-input type="email" [(ngModel)] ="user.email" name="email"  required></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label fixed>Jantina</ion-label>
-        <ion-select ngModel name="gender">
-          <ion-option value="f">Perempuan</ion-option>
-          <ion-option value="m">Lelaki</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-    <button ion-button block type="submit" [disabled]="!f.valid">CIPTA AKAUN</button>
-  </form>
+        <ion-item>
+          <ion-label >Kata Laluan</ion-label>
+          <ion-input type="password" [(ngModel)] ="user.password" name="password"  required [minlength]="6"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label >Jantina</ion-label>
+          <ion-select [(ngModel)] ="user.gender" name="gender">
+            <ion-option value="f">Perempuan</ion-option>
+            <ion-option value="m">Lelaki</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </form>
+
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="onSignUp(user)">CIPTA AKAUN</button>
+
+      <!-- <p text-center ion-text color="secondary">Or Sign Up with:</p>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-facebook">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-twitter">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button icon-only block class="btn-gplus">
+              <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="primary" tappable (click)="Login()">Log Masuk di sini</span>
+    </div>
+
+  </div>
 </ion-content>

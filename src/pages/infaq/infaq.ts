@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 
 import { Sautm } from './sautm/sautm';
+import { Chart } from './chart/chart';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class InfaqPage {
   jumaat:number;
   kebajikan:number;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private modalCtrl:ModalController) {
     this.skutmprogress = 44;
     this.ramadhanprogress = 76;
     this.masjid = 45;
@@ -39,13 +40,28 @@ export class InfaqPage {
    this.workoutProgress = Math.min( (val * 100), 100) + '%';
   }
 
-  presentAlert(title,desc) {
-    let alert = this.alertCtrl.create({
+  presentModal(title,desc,value) {
+    let ChartModal = this.modalCtrl.create(Chart, { 
       title: title,
-      subTitle: desc,
-      buttons: ['Ok']
+      desc : desc,
+      value : value
+    },
+    {cssClass:"mymodal"}
+  );
+    ChartModal.onDidDismiss(data => {
+      console.log(data);
     });
-    alert.present();
+    ChartModal.present();
   }
+
+
+  // presentAlert(title,desc) {
+  //   let alert = this.alertCtrl.create({
+  //     title: title,
+  //     subTitle: desc,
+  //     buttons: ['Ok']
+  //   });
+  //   alert.present();
+  // }
 
 }
