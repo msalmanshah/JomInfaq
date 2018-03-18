@@ -24,6 +24,7 @@ import { Payfidyah } from '../pages/fidyah/payfidyah/payfidyah';
 
 import { AuthService } from '../services/auth';
 
+
 import { HttpModule } from '@angular/http';
 
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
@@ -34,7 +35,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { FIREBASE_CONFIG } from './firebase.credential';
 
+import { TransService } from '../services/trans.service';
 import { UserService } from '../services/user.service';
+
 import { Chart } from '../pages/infaq/chart/chart';
 
 import { ChartsModule } from 'ng2-charts';
@@ -95,6 +98,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     EmailComposer,
     AuthService,
     UserService,
+    TransService,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

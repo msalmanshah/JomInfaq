@@ -5,6 +5,7 @@ import { ZakatPage } from '../zakat/zakat';
 import { FidyahPage } from '../fidyah/fidyah';
 import { InfaqPage } from '../infaq/infaq';
 
+
 @Component({
   selector: 'page-tabs',
   template: `
@@ -22,4 +23,6 @@ export class TabsPage{
   zakatpage = ZakatPage;
   fidyahpage = FidyahPage;
   infaqpage = InfaqPage;
+
+  
 }

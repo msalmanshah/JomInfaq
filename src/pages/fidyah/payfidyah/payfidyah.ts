@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, AlertController } from 'ionic-angular';
 
 import { PaymentPage } from '../../payment/payment';
+import { AuthService } from '../../../services/auth';
+import { TransService } from '../../../services/trans.service';
 
 @IonicPage()
 @Component({
@@ -11,9 +13,19 @@ import { PaymentPage } from '../../payment/payment';
 export class Payfidyah {
 
     fidyah:number;
+    type:string = "Fidyah";
+    transid:string = "FID00001";
+    transdate = new Date();
+    status:string = "Processing";
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, public modalCtrl:ModalController, private viewCtrl:ViewController, private alertCtrl:AlertController) {
-    this.fidyah = this.navParams.get('totalfidyah');
+  constructor(public navCtrl: NavController, 
+    private navParams: NavParams, 
+    public modalCtrl:ModalController, 
+    private viewCtrl:ViewController, 
+    private alertCtrl:AlertController,
+    private auth:AuthService,
+    private translist:TransService) {
+      this.fidyah = this.navParams.get('totalfidyah');
   }
 
   onPay(){
@@ -35,6 +47,17 @@ export class Payfidyah {
               amt : this.fidyah
             });
             modal.present();
+
+            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.fidyah,this.status);
+            this.auth.getActiveUser().getToken()
+              .then((token:string) => {
+                this.translist.storeTrans(token)
+                  .subscribe ( ( ) => console.log('Success!'),
+                  error => {
+                    console.log('error');
+                  });
+            })
+
           }
         }
       ]

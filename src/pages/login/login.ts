@@ -19,10 +19,7 @@ export class LoginPage {
 
   user : User = {
     name : '',
-    tel: '',
-    email : '',
-    password : '',
-    gender : ''
+    tel: ''
   }    
 
 
@@ -40,16 +37,6 @@ export class LoginPage {
     this.authService.signin(form.value.email,form.value.password)
       .then(data => {
         loading.dismiss();
-        this.authService.getActiveUser().getToken()
-        .then(
-          (token:string) => {
-            const userId = this.authService.getActiveUser().uid;
-            this.http.put('https://jominfaq2017.firebaseio.com/'+userId+'/info.json?auth='+token, this.user)
-            .map((response:Response) => {
-              return response.json();
-            });
-          }
-        )
       })
       .catch(error => {
         loading.dismiss();

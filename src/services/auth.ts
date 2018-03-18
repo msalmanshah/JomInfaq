@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Http, Response } from '@angular/http';
 
 export class AuthService {
   signup(email:string, password:string){
@@ -16,4 +17,5 @@ export class AuthService {
   getActiveUser(){
     return firebase.auth().currentUser;
   }
+
 }

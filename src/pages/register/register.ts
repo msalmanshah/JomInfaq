@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { LoadingController, AlertController, NavController } from 'ionic-angular';
 
 import { AuthService } from '../../services/auth';
@@ -21,35 +21,22 @@ export class RegisterPage {
   user : User = {
     name : '',
     tel: '',
-    email : '',
-    password : '',
-    gender : ''
   }
 
   constructor(public navCtrl:NavController, private authService: AuthService, private loadingCtrl:LoadingController, private alertCtrl:AlertController, private userService: UserService, private http:Http) {
 
   }
 
-  onSignUp(user: User){
+  onSignUp(form: NgForm){
     const loading = this.loadingCtrl.create({
       content: 'Checking...'
     });
     loading.present();
 
 
-    this.authService.signup(user.email,user.password)
+    this.authService.signup(form.value.email,form.value.password)
       .then(data => {
         loading.dismiss();
-        this.authService.getActiveUser().getToken()
-        .then(
-          (token:string) => {
-            const userId = this.authService.getActiveUser().uid;
-            this.http.put('https://jominfaq2017.firebaseio.com/'+userId+'/info.json?auth='+token, this.user)
-            .map((response:Response) => {
-              return response.json();
-            });
-          }
-        )
         // this.userService.addUser(user).then(ref=> {
 
         // })

@@ -12,6 +12,11 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons right>
+      <button ion-button (click)="onEdit()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Profil</ion-title>
   </ion-navbar>
 
@@ -25,52 +30,39 @@
         </ion-avatar>
         <ion-card-content>
             <ion-card-title style="text-align:center;">
-                Muhammad Salman
+                {{profile.name}}
             </ion-card-title>
-
         </ion-card-content>
     </ion-card>
 
-    <ion-item>
-      {{currentUser.name}}
-    </ion-item>
-
-    <ion-item *ngFor = "let user of activeUser$ | async">
-      {{user.name}}
-    </ion-item>
 
     <ion-list>
-      <ion-item-divider>
+      <!-- <ion-item-divider>
         Sumbangan
-      </ion-item-divider>
+      </ion-item-divider> -->
 
       <button ion-item>
-        <ion-icon name="heart" item-start></ion-icon>
-        Sumbangan Infaq
+        <ion-icon name="stats" item-left></ion-icon>
+        Sejarah Transaksi
       </button>
 
-      <button ion-item>
-        <ion-icon name="briefcase" item-start></ion-icon>
-        Transaksi Zakat
-      </button>
-
-      <button ion-item>
+      <!-- <button ion-item>
         <ion-icon name="flower" item-start></ion-icon>
         Transaksi Fidyah
-      </button>
+      </button> -->
 
-      <ion-item-divider>
+      <!-- <ion-item-divider>
         Lebih Lanjut
-      </ion-item-divider>
+      </ion-item-divider> -->
 
       <button ion-item>
           <ion-icon name="mail" item-left></ion-icon>
-          <a class="plainText" >msalmanshah26@gmail.com</a>
+          <a class="plainText" >{{email}}</a>
       </button>
 
       <button ion-item>
           <ion-icon name="call" item-left></ion-icon>
-          <a class="plainText" href="tel:+60136976892">+60136976892</a>
+          <a class="plainText" href="">{{profile.tel}}</a>
       </button>
 
       <!-- <button ion-item>
