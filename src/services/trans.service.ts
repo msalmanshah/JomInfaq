@@ -10,7 +10,7 @@ import { AuthService} from './auth';
 @Injectable()
 export class TransService {
 
-    private usertrans : Trans;
+    private usertrans : Trans [] = [];
 
     constructor(private http:Http,private auth:AuthService) {
 
@@ -18,13 +18,15 @@ export class TransService {
 
 
     addNewTrans(date:Date,transid:string,type:string,amt:number,status:string){
-        this.usertrans = new Trans(date,transid,type,amt,status);
+        this.usertrans.push(new Trans(date,transid,type,amt,status));
     }
+
+
 
     storeTrans(token:string){
         const userId = this.auth.getActiveUser().uid;
         return this.http
-            .post('https://jominfaq2017.firebaseio.com/'+userId+'/transaction.json?auth='+token,this.usertrans)
+            .put('https://jominfaq2017.firebaseio.com/'+userId+'/transaction.json?auth='+token,this.usertrans)
             .map((response:Response) => {
                 return response.json();
             });

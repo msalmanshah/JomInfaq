@@ -22,9 +22,11 @@ import { CalcPage } from '../pages/zakat/calc/calc';
 import { Payzakat } from '../pages/zakat/payzakat/payzakat';
 import { Payfidyah } from '../pages/fidyah/payfidyah/payfidyah';
 
+import { HistoryPage } from '../pages/profile/history/history';
+
 import { AuthService } from '../services/auth';
 
-
+import { Camera } from '@ionic-native/camera';
 import { HttpModule } from '@angular/http';
 
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
@@ -62,6 +64,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PaymentPage,
     ApplyPage,
     CalcPage,
+    HistoryPage,
     ProgressBarComponent
   ],
   imports: [
@@ -90,7 +93,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     Payfidyah,
     PaymentPage,
     ApplyPage,
-    CalcPage
+    CalcPage,
+    HistoryPage
   ],
   providers: [
     StatusBar,
@@ -100,6 +104,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     UserService,
     TransService,
     InAppBrowser,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

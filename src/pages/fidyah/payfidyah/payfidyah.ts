@@ -12,7 +12,7 @@ import { TransService } from '../../../services/trans.service';
 })
 export class Payfidyah {
 
-    fidyah:number;
+    amount:number;
     type:string = "Fidyah";
     transid:string = "FID00001";
     transdate = new Date();
@@ -25,7 +25,7 @@ export class Payfidyah {
     private alertCtrl:AlertController,
     private auth:AuthService,
     private translist:TransService) {
-      this.fidyah = this.navParams.get('totalfidyah');
+      this.amount = this.navParams.get('totalfidyah');
   }
 
   onPay(){
@@ -44,11 +44,11 @@ export class Payfidyah {
           text: 'Pasti',
           handler: () => {
             const modal = this.modalCtrl.create(PaymentPage,{
-              amt : this.fidyah
+              amt : this.amount
             });
             modal.present();
 
-            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.fidyah,this.status);
+            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.amount,this.status);
             this.auth.getActiveUser().getToken()
               .then((token:string) => {
                 this.translist.storeTrans(token)

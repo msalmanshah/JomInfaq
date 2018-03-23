@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, AlertController } from 'ionic-angular';
 
 import { PaymentPage } from '../../payment/payment';
+import { TransService } from '../../../services/trans.service';
+import { AuthService } from '../../../services/auth';
 
 @IonicPage()
 @Component({
@@ -10,13 +12,23 @@ import { PaymentPage } from '../../payment/payment';
 })
 export class Sautm {
 
-  name:string;
+  type:string;
   id:number;
   amount:number;
+  transid:string = "INF00001";
+  transdate = new Date();
+  status:string = "Processing";
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, public modalCtrl:ModalController, private viewCtrl:ViewController, private alertCtrl:AlertController) {
-    this.name = this.navParams.get('name');
-    this.id = this.navParams.get('id');
+
+  constructor(public navCtrl: NavController, 
+    private navParams: NavParams, 
+    public modalCtrl:ModalController, 
+    private viewCtrl:ViewController, 
+    private alertCtrl:AlertController,
+    private translist:TransService,
+    private auth:AuthService) {
+      this.type = this.navParams.get('name');
+      this.id = this.navParams.get('id');
   }
 
   onPay(){
@@ -38,6 +50,17 @@ export class Sautm {
               amt:this.amount
             });
             modal.present();
+
+            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.amount,this.status);
+            this.auth.getActiveUser().getToken()
+              .then((token:string) => {
+                this.translist.storeTrans(token)
+                  .subscribe ( ( ) => console.log('Success!'),
+                  error => {
+                    console.log('error');
+                  });
+            })
+
           }
         }
       ]

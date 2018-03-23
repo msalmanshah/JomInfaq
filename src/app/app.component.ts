@@ -36,7 +36,11 @@ export class MyApp {
 
   @ViewChild('nav') nav:NavController;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private menuCtrl:MenuController, private authService:AuthService) {
+  constructor(platform: Platform, 
+    statusBar: StatusBar, 
+    splashScreen: SplashScreen, 
+    private menuCtrl:MenuController, 
+    private authService:AuthService) {
 
     firebase.initializeApp(FIREBASE_CONFIG);
 
@@ -52,12 +56,19 @@ export class MyApp {
     });
 
     platform.ready().then(() => {
+      // let status bar overlay webview
+      statusBar.overlaysWebView(true);
+
+      // set status bar to white
+      statusBar.backgroundColorByHexString('#ffffff');
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
+      statusBar.styleLightContent();
       splashScreen.hide();
     });
   }
+
+
 
   onLoad(page:any){
     this.nav.setRoot(page);

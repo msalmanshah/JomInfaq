@@ -5,14 +5,14 @@
       <button ion-button (click)="onClose()">
       </button>
     </ion-buttons>
-    <ion-title>{{name}}</ion-title>
+    <ion-title>{{type}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
   <ion-item>
-    <ion-label>{{name}}</ion-label>
+    <ion-label>{{type}}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label>RM</ion-label>
@@ -27,9 +27,7 @@
       <ion-option value="2000">2000.00</ion-option>
     </ion-select>
   </ion-item>
-  <ion-item>
-    <ion-textarea [(ngModel)]="doa" placeholder="Tuliskan doa terbaikmu"></ion-textarea>
-  </ion-item>
+
   <br>
   <button ion-button color="primary" (click)="onPay()" block>TERUSKAN</button>
   <hr>

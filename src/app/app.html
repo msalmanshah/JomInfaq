@@ -1,6 +1,7 @@
 <ion-menu [content]="nav" color="primary">
   <ion-header>
-    <ion-toolbar class="user-profile">
+    <ion-toolbar class="user-profile" padding>
+        <ion-icon name="person" item-left style="font-size: 60px;color:white;"></ion-icon>
       <!-- <ion-grid>
         <ion-row>
           <ion-col col-4>
@@ -42,7 +43,7 @@
        Jom Infaq
      </button>
      <button ion-item (click)="onLoad(profilePage)" *ngIf="isAuthenticated">
-       <ion-icon name="person" item-left></ion-icon>
+       <ion-icon name="contact" item-left></ion-icon>
        Profil
      </button>
      <button ion-item (click)="onLoad(loginPage)" *ngIf="!isAuthenticated">
