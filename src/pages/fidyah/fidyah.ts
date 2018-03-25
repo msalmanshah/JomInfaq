@@ -15,8 +15,8 @@ import { Payfidyah } from './payfidyah/payfidyah';
 })
 export class FidyahPage {
 
-  fidyahamt:number;
-  fidyahhari:number;
+  fidyahamt:number = 0 ;
+  fidyahhari:number ;
   fidyahtahun:number = 1;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

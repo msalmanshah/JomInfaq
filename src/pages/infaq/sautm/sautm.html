@@ -12,21 +12,14 @@
 
 <ion-content padding>
   <ion-item>
-    <ion-label>{{type}}</ion-label>
+    <ion-label color="primary" stacked>Jenis Transaksi</ion-label>
+    <ion-input [(ngModel)]="type" readonly></ion-input> 
   </ion-item>
   <ion-item>
-    <ion-label>RM</ion-label>
-    <ion-select [(ngModel)]="amount">
-      <ion-option selected value="10">10.00</ion-option>
-      <ion-option value="20">20.00</ion-option>
-      <ion-option value="50">50.00</ion-option>
-      <ion-option value="100">100.00</ion-option>
-      <ion-option value="200">200.00</ion-option>
-      <ion-option value="500">500.00</ion-option>
-      <ion-option value="1000">1000.00</ion-option>
-      <ion-option value="2000">2000.00</ion-option>
-    </ion-select>
+    <ion-label color="primary" stacked>RM</ion-label>
+    <ion-input [(ngModel)]="amount" type="number" placeholder="5" min="5" required></ion-input>  
   </ion-item>
+  <ion-note style="color:red;" padding>*Minimum Transaksi adalah RM5.00</ion-note>
 
   <br>
   <button ion-button color="primary" (click)="onPay()" block>TERUSKAN</button>

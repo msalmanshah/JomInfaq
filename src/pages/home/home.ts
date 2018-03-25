@@ -41,15 +41,15 @@ export class HomePage {
   presentPrompt() {
     let alert = this.alertCtrl.create({
       title: 'Kemaskini Profil',
-      message: "Masukkan maklumat anda",
+      subTitle: "Masukkan maklumat anda",
       inputs: [
         {
           name: 'name',
-          placeholder: 'name'
+          placeholder: 'Nama Penuh'
         },
         {
           name: 'tel',
-          placeholder: 'tel',
+          placeholder: 'Nombor Telefon',
           type: 'tel'
         }
       ],

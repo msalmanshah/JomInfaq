@@ -13,7 +13,7 @@
 
 <ion-content padding class="card-background-page">
 
-    <ion-card>
+    <ion-card (click)="onLoad('Dana Ramadhan')">
         <img src="assets/img/ramadan.jpg" style="height:200px;"/>
         <div class="card-title">Dana Ramadhan</div>
         <ion-row>
@@ -29,7 +29,7 @@
             </li>
           </ul>
         </div>
-        <ion-row>
+        <!-- <ion-row>
           <ion-col col-5>
             <button ion-button icon-left clear small (click)="presentModal('Sumbangan Dana Ramadhan','Pusat Islam UTM mengusahakan Dana Ramadan bagi aktiviti Ramadan seperti Sahur, Khatam Al-Quran, Majlis Ilmu dan Sumbangan Sedekah Fakir Miskin / Anak Yatim',ramadhanprogress)">
             <ion-icon name="information-circle"></ion-icon>
@@ -42,10 +42,10 @@
             <div>Sedekah Sekarang</div>
           </button>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       </ion-card>
 
-  <ion-card>
+  <ion-card (click)="onLoad('Sekolah Agama UTM')">
     <img src="assets/img/skutm.jpg" style="height:200px;"/>
     <div class="card-title">Sekolah Agama UTM</div>
 
@@ -62,7 +62,7 @@
         </li>
       </ul>
     </div>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Tabung Pembangunan Sekolah Agama UTM','Tabung Pembangunan Sekolah Agama UTM ditubuhkan bertujuan mengumpul dana bagi pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu.',skutmprogress)" >
           <ion-icon name="information-circle"></ion-icon>
@@ -75,12 +75,11 @@
           <div>Sedekah Sekarang</div>
         </button>
       </ion-col>
-
-    </ion-row>
+    </ion-row> -->
 
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="onLoad('Tabung Masjid')">
     <img src="assets/img/masjidderma.jpg"  style="height:200px;"/>
     <div class="card-title">Tabung Masjid</div>
     <ion-row>
@@ -92,11 +91,11 @@
       <ul class="highlight">
         <li>
           <ion-icon name="checkmark" class="text-green"></ion-icon>
-          <span ion-text color="primary">Kuliah Maghrib</span>
+          <span ion-text color="primary">Pelbagai aktiviti di Masjid</span>
         </li>
       </ul>
     </div>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Tabung Masjid','Pembinaan Masjid Sultan Ismail bermula pada tahun 1986 dan telah siap pada tahun 1990 dengan belanja hampir RM 19 juta.',masjid)">
           <ion-icon name="information-circle"></ion-icon>
@@ -109,10 +108,10 @@
         <div>Sedekah Sekarang</div>
       </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="onLoad('Tabung Jumaat')">
     <img src="assets/img/masjid.jpg" style="height:200px;"/>
     <div class="card-title">Tabung Jumaat</div>
     <ion-row>
@@ -128,7 +127,7 @@
         </li>
       </ul>
     </div>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Tabung Jumaat','Sesungguhnya sedekah pada hari Jumaat itu memiliki kelebihan dari hari-hari lainnya.',jumaat)">
         <ion-icon name="information-circle"></ion-icon>
@@ -141,10 +140,10 @@
         <div>Sedekah Sekarang</div>
       </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="onLoad('Kebajikan Mahasiswa')">
     <img src="assets/img/kebajikan.jpg" style="height:200px;"/>
     <div class="card-title">Kebajikan Mahasiswa</div>
     <ion-row>
@@ -158,9 +157,17 @@
           <ion-icon name="checkmark" class="text-green"></ion-icon>
           <span ion-text color="primary">Bantuan kepada fakir dan miskin</span>
         </li>
+        <li>
+          <ion-icon name="checkmark" class="text-green"></ion-icon>
+          <span ion-text color="primary">Asnaf Fi Sabilillah</span>
+        </li>
+        <li>
+          <ion-icon name="checkmark" class="text-green"></ion-icon>
+          <span ion-text color="primary">Bantuan bayaran yuran</span>
+        </li>
       </ul>
     </div>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Kebajikan Mahasiswa','Bertanggungjawab untuk mengagihkan dana kepada mahasiswa UTM yang tergolong dalam golongan asnaf.',kebajikan)">
         <ion-icon name="information-circle"></ion-icon>
@@ -173,7 +180,7 @@
         <div>Sedekah Sekarang</div>
       </button>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-card>
 
 </ion-content>

@@ -46,6 +46,7 @@ export class PaymentPage {
       });
 
       toast.present();
+      this.navCtrl.popAll();
 
     }, 2000);
 

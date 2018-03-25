@@ -5,6 +5,10 @@ import { PaymentPage } from '../../payment/payment';
 import { TransService } from '../../../services/trans.service';
 import { AuthService } from '../../../services/auth';
 
+import { URLSearchParams, Http } from '@angular/http';
+import { User } from '../../../models/user/user.model';
+import { UserService } from '../../../services/user.service';
+
 @IonicPage()
 @Component({
   selector: 'page-sautm',
@@ -14,10 +18,12 @@ export class Sautm {
 
   type:string;
   id:number;
-  amount:number;
+  amount:number = 5;
   transid:string = "INF00001";
   transdate = new Date();
   status:string = "Processing";
+
+  profile : User = new User('','');
 
 
   constructor(public navCtrl: NavController, 
@@ -26,9 +32,26 @@ export class Sautm {
     private viewCtrl:ViewController, 
     private alertCtrl:AlertController,
     private translist:TransService,
-    private auth:AuthService) {
+    private auth:AuthService,
+    private userlist:UserService,
+    private http:Http) {
       this.type = this.navParams.get('name');
       this.id = this.navParams.get('id');
+      this.fetchUserInfo();
+  }
+
+  fetchUserInfo() {
+    this.auth.getActiveUser().getToken()
+      .then((token:string)=> {
+        this.userlist.fetchUser(token)
+          .subscribe((user: User) => {
+            this.profile = user;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      })
   }
 
   onPay(){
@@ -61,6 +84,21 @@ export class Sautm {
                   });
             })
 
+            // let urlSearchParams= new URLSearchParams();
+            // urlSearchParams.append('name', this.profile.name);
+            // urlSearchParams.append('transid', this.transid);
+            // urlSearchParams.append('transdate', this.transdate.toString());
+            // urlSearchParams.append('type', this.type);
+            // urlSearchParams.append('amount', this.amount.toString());
+            // this.http.post('/api', urlSearchParams).subscribe(
+            //       data => {
+            //         console.log('Success');
+            //       },
+            //       error => {
+            //         console.log(JSON.stringify(error.json()));
+            //       }
+            //     )
+
           }
         }
       ]
@@ -68,6 +106,9 @@ export class Sautm {
   alert.present();
 
   }
+
+  
+
 
   onClose(remove = false){
     this.viewCtrl.dismiss(remove);

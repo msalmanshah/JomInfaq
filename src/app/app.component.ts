@@ -56,14 +56,11 @@ export class MyApp {
     });
 
     platform.ready().then(() => {
-      // let status bar overlay webview
-      statusBar.overlaysWebView(true);
 
-      // set status bar to white
-      statusBar.backgroundColorByHexString('#ffffff');
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleLightContent();
+      if(platform.is('android')) {
+        statusBar.styleBlackOpaque();
+      }
+
       splashScreen.hide();
     });
   }

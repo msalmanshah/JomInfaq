@@ -93,7 +93,7 @@ export class ProfilePage {
   onEdit() {
     let alert = this.alertCtrl.create({
       title: 'Kemaskini Profil',
-      message: "Masukkan maklumat anda",
+      subTitle: "Masukkan maklumat anda",
       inputs: [
         {
           name: 'name',
@@ -106,6 +106,13 @@ export class ProfilePage {
         }
       ],
       buttons: [
+        {
+          text: 'Kembali',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
         {
           text: 'Teruskan',
           handler: data => {

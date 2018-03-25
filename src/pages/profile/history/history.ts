@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { User } from '../../../models/user/user.model';
-import { UserService } from '../../../services/user.service';
 import { AuthService } from '../../../services/auth';
 
 
@@ -21,12 +19,8 @@ export class HistoryPage {
     transList : Trans [] = [];
 
     constructor(public navCtrl: NavController, 
-        public navParams: NavParams, 
-        private userlist:UserService, 
+        public navParams: NavParams,  
         private auth:AuthService,
-        private alertCtrl:AlertController,
-        private loadingCtrl:LoadingController,
-        private toastCtrl:ToastController,
         private translist:TransService) {
           this.fetchTransInfo();
       }

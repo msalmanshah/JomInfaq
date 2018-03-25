@@ -1,39 +1,25 @@
-<!-- <ion-header>
+<ion-content class="bg">
 
-  <ion-navbar color="primary">
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>Log Masuk</ion-title>
-  </ion-navbar>
-
-</ion-header> -->
-
-
-<ion-content class="auth-page">
-
-  <div class="login-content">
+  <div>
 
     <!-- Logo -->
-    <div padding-horizontal text-center class="animated fadeInDown">
+    <div padding-horizontal text-center>
       <div class="logo"></div>
-      <h2 ion-text class="text-primary" style="margin-top: 0px;">
+      <h2 ion-text  style="margin-top: 0px;">
         <strong>JOM INFAQ</strong> 
       </h2>
     </div>
 
-    <form class="list-form" #f="ngForm" (ngSubmit)="onSignIn(f)">
+    <form  #f="ngForm" (ngSubmit)="onSignIn(f)">
       <ion-list>
         <ion-item>
           <ion-label floating>Emel</ion-label>
-          <ion-input type="email" ngModel name="email"  required></ion-input>
+          <ion-input type="email" ngModel name="email" required></ion-input>
         </ion-item>
   
         <ion-item>
           <ion-label floating>Kata Laluan</ion-label>
-          <ion-input type="password" ngModel name="password"  required></ion-input>
+          <ion-input type="password" ngModel name="password" required></ion-input>
         </ion-item>
       </ion-list>
 
@@ -48,7 +34,6 @@
         </button>
 
         <!-- <p text-center ion-text color="secondary">Log masuk dengan:</p>
-
         <ion-grid>
           <ion-row>
             <ion-col col-4>
@@ -68,7 +53,6 @@
             </ion-col>
           </ion-row>
         </ion-grid> -->
-
       </div>
     </form>
 
