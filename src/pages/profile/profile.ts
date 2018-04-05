@@ -14,6 +14,7 @@ import 'rxjs/add/operator/map';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HistoryPage } from './history/history';
 import firebase from 'firebase';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ProfilePage page.
@@ -29,7 +30,7 @@ import firebase from 'firebase';
 })
 export class ProfilePage {
 
-  profile : User = new User('','');
+  profile : User = new User('','','');
   transList : Trans [] = [];
 
   show:boolean = true;
@@ -50,7 +51,9 @@ export class ProfilePage {
     private loadingCtrl:LoadingController,
     private toastCtrl:ToastController,
     private translist:TransService,
-    private camera:Camera) {
+    private camera:Camera,
+    private authService:AuthService) {
+
       this.fetchUserInfo();
       this.fetchTransInfo();
       this.myPhotosRef = firebase.storage().ref('/Photos/');
@@ -97,12 +100,20 @@ export class ProfilePage {
       inputs: [
         {
           name: 'name',
-          placeholder: 'Nama Penuh'
+          placeholder: 'Nama Penuh',
+          value: this.profile.name
         },
         {
           name: 'tel',
           placeholder: 'Nombor Telefon',
-          type: 'tel'
+          type: 'tel',
+          value: this.profile.tel
+        },
+        {
+          name: 'ic',
+          placeholder: 'Nombor IC/Passport',
+          type: 'number',
+          value: this.profile.ic
         }
       ],
       buttons: [
@@ -114,9 +125,9 @@ export class ProfilePage {
           }
         },
         {
-          text: 'Teruskan',
+          text: 'Simpan',
           handler: data => {
-            this.userlist.addUserInfo(data.name,data.tel);
+            this.userlist.addUserInfo(data.name,data.tel,data.ic);
             this.auth.getActiveUser().getToken()
               .then((token:string) => {
                 this.userlist.storeUser(token)
@@ -148,7 +159,7 @@ export class ProfilePage {
                 });
           
                 toast.present();
-                this.navCtrl.setRoot(TabsPage);
+                this.navCtrl.setRoot(ProfilePage);
                 this.navCtrl.popToRoot();
               }, 2000);
               
@@ -205,4 +216,41 @@ export class ProfilePage {
      this.navCtrl.push(HistoryPage);
    }
 
+   onLogout(){
+    let alert = this.alertCtrl.create({
+      subTitle: 'Log Keluar Aplikasi?',
+      buttons: [
+        {
+          text: 'Kembali',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Keluar',
+          handler: () => {
+            this.authService.logout();
+          }
+        }
+      ]
+    });
+    alert.present();
+
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.navCtrl.setRoot(ProfilePage);
+    this.navCtrl.popToRoot();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
+  }
+
+  onHome(){
+    this.navCtrl.push(HomePage);
+  }
 }

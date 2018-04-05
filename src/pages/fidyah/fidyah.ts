@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Payfidyah } from './payfidyah/payfidyah';
+import { AuthService } from '../../services/auth';
+import { HomePage } from '../home/home';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NumberValidator } from '../../validators/number';
 /**
  * Generated class for the FidyahPage page.
  *
@@ -15,11 +20,23 @@ import { Payfidyah } from './payfidyah/payfidyah';
 })
 export class FidyahPage {
 
-  fidyahamt:number = 0 ;
-  fidyahhari:number ;
-  fidyahtahun:number = 1;
+  fidyahform:FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  fidyahamt:number = 0 ;
+  fidyahhari:number = 1;
+  fidyahtahun:number = 1;
+  fidyahamtstr:string;
+  submitAttempt:boolean = false;
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private authService:AuthService,
+    private formbuilder:FormBuilder) {
+        this.fidyahform = formbuilder.group({
+          fidyahhari: ['', NumberValidator.isValid],
+          fidyahtahun: ['', NumberValidator.isValid]
+      });
+      this.fidyahamtstr = this.fidyahamt.toLocaleString('en-us', {minimumFractionDigits: 2});
 
   }
 
@@ -28,12 +45,23 @@ export class FidyahPage {
   }
 
   onLoad(){
-    this.navCtrl.push(Payfidyah,{
-    	totalfidyah : this.fidyahamt
-    });
+    this.submitAttempt = true;
+ 
+    if(this.fidyahform.valid) {
+      this.navCtrl.push(Payfidyah,{
+        totalfidyah : this.fidyahamt
+      });
+    }
+    
   }
 
   onChange() {
     this.fidyahamt = Math.round( ( +this.fidyahtahun * +this.fidyahhari * 2.0) * 100 ) / 100;
+    this.fidyahamtstr = this.fidyahamt.toLocaleString('en-us', {minimumFractionDigits: 2});
+  }
+
+ 
+  onHome(){
+    this.navCtrl.push(HomePage);
   }
 }

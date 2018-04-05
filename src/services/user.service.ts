@@ -26,8 +26,8 @@ export class UserService {
         return this.userRef.push(user);
     }
 
-    addUserInfo(name:string,tel:string){
-        this.auser = new User(name,tel);
+    addUserInfo(name:string,tel:string,ic:string){
+        this.auser = new User(name,tel,ic);
     }
 
     storeUser(token:string){

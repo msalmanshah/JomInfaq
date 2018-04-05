@@ -10,7 +10,7 @@ import { AuthService} from './auth';
 @Injectable()
 export class TransService {
 
-    private usertrans : Trans [] = [];
+    public usertrans : Trans[] = [];
 
     constructor(private http:Http,private auth:AuthService) {
 
@@ -18,7 +18,14 @@ export class TransService {
 
 
     addNewTrans(date:Date,transid:string,type:string,amt:number,status:string){
-        this.usertrans.push(new Trans(date,transid,type,amt,status));
+        this.usertrans = this.usertrans || [];
+        this.usertrans.push({
+            transdate:date,
+            transid:transid,
+            type:type,
+            amount:amt,
+            status:status
+        });
     }
 
 

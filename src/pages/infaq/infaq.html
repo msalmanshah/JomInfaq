@@ -1,18 +1,27 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>Infaq</ion-title>
+      
+      <ion-buttons right>
+          <button ion-button (click)="onHome()">
+            <ion-icon name="information-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title style="text-align:center;">Infaq</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding class="card-background-page">
-
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    
     <ion-card (click)="onLoad('Dana Ramadhan')">
         <img src="assets/img/ramadan.jpg" style="height:200px;"/>
         <div class="card-title">Dana Ramadhan</div>
@@ -25,8 +34,12 @@
           <ul class="highlight">
             <li>
               <ion-icon name="checkmark" class="text-green"></ion-icon>
-              <span ion-text color="primary">Aktiviti sepanjang Ramadhan</span>
+              <span ion-text color="primary">Majlis Berbuka Puasa</span>
             </li>
+            <li>
+                <ion-icon name="checkmark" class="text-green"></ion-icon>
+                <span ion-text color="primary">Ayuh Bersahur</span>
+              </li>
           </ul>
         </div>
         <!-- <ion-row>

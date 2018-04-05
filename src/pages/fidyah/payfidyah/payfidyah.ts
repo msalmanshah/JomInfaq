@@ -4,6 +4,9 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController, A
 import { PaymentPage } from '../../payment/payment';
 import { AuthService } from '../../../services/auth';
 import { TransService } from '../../../services/trans.service';
+import { Trans } from '../../../models/user/trans.model';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user/user.model';
 
 @IonicPage()
 @Component({
@@ -14,9 +17,13 @@ export class Payfidyah {
 
     amount:number;
     type:string = "Fidyah";
-    transid:string = "FID00001";
+    static id :number = 0;
+    transid:string ;
     transdate = new Date();
     status:string = "Processing";
+    profile : User = new User('','','');
+    trans : Trans = new Trans(new Date(),'','',0,'');
+    amountstr:string;
 
   constructor(public navCtrl: NavController, 
     private navParams: NavParams, 
@@ -24,8 +31,27 @@ export class Payfidyah {
     private viewCtrl:ViewController, 
     private alertCtrl:AlertController,
     private auth:AuthService,
-    private translist:TransService) {
+    private translist:TransService,
+    private userlist:UserService) {
       this.amount = this.navParams.get('totalfidyah');
+      this.amountstr = this.amount.toLocaleString('en-us', {minimumFractionDigits: 2});
+      this.transid = "FID000"+Payfidyah.id++;
+
+      this.fetchUserInfo();
+  }
+
+  fetchUserInfo() {
+    this.auth.getActiveUser().getToken()
+      .then((token:string)=> {
+        this.userlist.fetchUser(token)
+          .subscribe((user: User) => {
+            this.profile = user;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      })
   }
 
   onPay(){
@@ -44,7 +70,10 @@ export class Payfidyah {
           text: 'Pasti',
           handler: () => {
             const modal = this.modalCtrl.create(PaymentPage,{
-              amt : this.amount
+              amt : this.amount,
+              name: this.profile.name,
+              ic:this.profile.ic,
+              type: this.type
             });
             modal.present();
 

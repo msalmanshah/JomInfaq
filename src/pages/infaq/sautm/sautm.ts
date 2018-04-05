@@ -5,9 +5,14 @@ import { PaymentPage } from '../../payment/payment';
 import { TransService } from '../../../services/trans.service';
 import { AuthService } from '../../../services/auth';
 
-import { URLSearchParams, Http } from '@angular/http';
+import { URLSearchParams, Http, RequestOptions } from '@angular/http';
 import { User } from '../../../models/user/user.model';
 import { UserService } from '../../../services/user.service';
+import { Trans } from '../../../models/user/trans.model';
+import { ProfilePage } from '../../profile/profile';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InfaqValidator } from '../../../validators/infaqvalidator';
 
 @IonicPage()
 @Component({
@@ -16,14 +21,20 @@ import { UserService } from '../../../services/user.service';
 })
 export class Sautm {
 
+  infaqform:FormGroup;
+
+  static sid : number = 0;
   type:string;
   id:number;
   amount:number = 5;
-  transid:string = "INF00001";
+  transid:string;
   transdate = new Date();
   status:string = "Processing";
+  submitAttempt : boolean = false;
+  amountstr:string;
 
-  profile : User = new User('','');
+  profile : User = new User('','','');
+  trans : Trans = new Trans(new Date(),'','',0,'');
 
 
   constructor(public navCtrl: NavController, 
@@ -34,10 +45,17 @@ export class Sautm {
     private translist:TransService,
     private auth:AuthService,
     private userlist:UserService,
-    private http:Http) {
+    private http:Http,
+    public formbuilder:FormBuilder) {
       this.type = this.navParams.get('name');
       this.id = this.navParams.get('id');
       this.fetchUserInfo();
+
+      this.transid = "INF000"+ Sautm.sid++;
+      this.amountstr = this.amount.toLocaleString('en-us', {minimumFractionDigits: 2});
+      this.infaqform = formbuilder.group({
+        amount: ['', InfaqValidator.isMin]
+      });
   }
 
   fetchUserInfo() {
@@ -55,55 +73,77 @@ export class Sautm {
   }
 
   onPay(){
-    let alert = this.alertCtrl.create({
-      title: 'Pembayaran',
-      message: 'Adakah anda pasti untuk meneruskan pembayaran?',
-      buttons: [
-        {
-          text: 'Kembali',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Pasti',
-          handler: () => {
-            const modal = this.modalCtrl.create(PaymentPage,{
-              amt:this.amount
-            });
-            modal.present();
 
-            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.amount,this.status);
-            this.auth.getActiveUser().getToken()
-              .then((token:string) => {
-                this.translist.storeTrans(token)
-                  .subscribe ( ( ) => console.log('Success!'),
-                  error => {
-                    console.log('error');
+    this.submitAttempt = true;
+ 
+    if(this.infaqform.valid) {
+
+        let alert = this.alertCtrl.create({
+          title: 'Pembayaran',
+          message: 'Adakah anda pasti untuk meneruskan pembayaran?',
+          buttons: [
+            {
+              text: 'Kembali',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            },
+            {
+              text: 'Pasti',
+              handler: () => {
+                if(this.profile.name.length < 1) {
+                  let profval = this.alertCtrl.create({
+                    subTitle: 'Nama dan IC harus diisi terlebih dahulu untuk teruskan pembayaran.',
+                    buttons: ['OK']
                   });
-            })
+                  profval.present();
+                }
+                else {
+                  const modal = this.modalCtrl.create(PaymentPage,{
+                    amt:this.amount,
+                    name:this.profile.name,
+                    type: this.type,
+                    ic:this.profile.ic
+                  });
+                  modal.present();
+      
+                  this.translist.addNewTrans(this.transdate,this.transid,this.type,this.amount,this.status);
+                  this.auth.getActiveUser().getToken()
+                    .then((token:string) => {
+                      this.translist.storeTrans(token)
+                        .subscribe ( ( ) => console.log('Success!'),
+                        error => {
+                          console.log('error');
+                        });
+                  });
+                }
+                
 
-            // let urlSearchParams= new URLSearchParams();
-            // urlSearchParams.append('name', this.profile.name);
-            // urlSearchParams.append('transid', this.transid);
-            // urlSearchParams.append('transdate', this.transdate.toString());
-            // urlSearchParams.append('type', this.type);
-            // urlSearchParams.append('amount', this.amount.toString());
-            // this.http.post('/api', urlSearchParams).subscribe(
-            //       data => {
-            //         console.log('Success');
-            //       },
-            //       error => {
-            //         console.log(JSON.stringify(error.json()));
-            //       }
-            //     )
+                let urlSearchParams= new URLSearchParams();
 
-          }
-        }
-      ]
-    });
-  alert.present();
+                urlSearchParams.append('name', this.profile.name);
+                urlSearchParams.append('transid', this.transid);
+                urlSearchParams.append('transdate', this.transdate.toString());
+                urlSearchParams.append('type', this.type);
+                urlSearchParams.append('amount', this.amount.toString());
+
+                this.http.post('https://localhost/ionic/api.php', urlSearchParams)
+                  .subscribe(
+                      data => {
+                        console.log('Success');
+                      },
+                      error => {
+                        console.log(JSON.stringify(error.json()));
+                      }
+                );
+
+              }
+            }
+          ]
+        });
+        alert.present();
+      }
 
   }
 

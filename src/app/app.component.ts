@@ -69,11 +69,13 @@ export class MyApp {
 
   onLoad(page:any){
     this.nav.setRoot(page);
-    this.menuCtrl.close();
+
   }
 
   onLogout(){
     this.authService.logout();
-    this.menuCtrl.close();
+
   }
+
+  
 }

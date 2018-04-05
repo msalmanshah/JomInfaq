@@ -1,8 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController, ToastController, LoadingController } from 'ionic-angular';
 
 import { Sautm } from './sautm/sautm';
 import { Chart } from './chart/chart';
+import { AuthService } from '../../services/auth';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user/user.model';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -41,7 +45,17 @@ export class InfaqPage {
   kebajikanstrcur:string;
   kebajikanstrgoal:string;
 
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController, 
+    private alertCtrl: AlertController, 
+    private modalCtrl:ModalController,
+    private authService:AuthService,
+    private userlist:UserService,
+    private auth:AuthService,
+    private toastCtrl:ToastController,
+    private loadingCtrl:LoadingController) {
+
+    this.checkProfile(); 
+      
     this.skutmprogress = Math.round((this.skutmcurrent / this.skutmgoals) * 100);
     this.ramadhanprogress = Math.round((this.ramadhancurrent / this.ramadhangoals) * 100);
     this.masjid = Math.round((this.masjidcurrent / this.masjidgoals) * 100);
@@ -96,14 +110,106 @@ export class InfaqPage {
     ChartModal.present();
   }
 
+  onLogout(){
+    this.authService.logout();
 
-  // presentAlert(title,desc) {
-  //   let alert = this.alertCtrl.create({
-  //     title: title,
-  //     subTitle: desc,
-  //     buttons: ['Ok']
-  //   });
-  //   alert.present();
-  // }
+  }
+
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 1000);
+  }
+
+  checkProfile() {
+    this.auth.getActiveUser().getToken()
+      .then((token:string)=> {
+        this.userlist.fetchUser(token)
+          .subscribe((user: User) => {
+            if(user == null) {
+              this.presentPrompt();
+            }
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      })
+  }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+
+      title: 'Selamat Datang ke Aplikasi Jom Infaq!',
+      subTitle: "Masukkan maklumat anda",
+      enableBackdropDismiss: false,
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Nama Penuh'
+        },
+        {
+          name: 'tel',
+          placeholder: 'Tel (eg:012578343)',
+          type: 'tel',
+        },
+        {
+          name: 'ic',
+          placeholder: 'IC (eg:920821105167)',
+          type: 'number',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Simpan',
+          handler: data => {
+            this.userlist.addUserInfo(data.name,data.tel,data.ic);
+            this.auth.getActiveUser().getToken()
+              .then((token:string) => {
+                this.userlist.storeUser(token)
+                  .subscribe ( ( ) => console.log('Success!'),
+                  error => {
+                    console.log('error');
+                  });
+              })
+
+              const loading = this.loadingCtrl.create({
+                content: `
+                  <div class="custom-spinner-container">
+                    <div class="custom-spinner-box">Kemaskini Profil..</div>
+                  </div>`
+              });
+              loading.present();
+          
+              setTimeout(() => {
+                loading.dismiss();
+          
+                let toast = this.toastCtrl.create({
+                  message: 'Profil berjaya disimpan.',
+                  duration: 3000,
+                  position: 'top'
+                });
+          
+                toast.onDidDismiss(() => {
+                  console.log('Dismissed toast');
+                });
+          
+                toast.present();
+
+              }, 2000);
+              
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  onHome(){
+    this.navCtrl.push(HomePage);
+  }
 
 }

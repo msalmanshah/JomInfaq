@@ -1,27 +1,37 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
+    
     <ion-buttons right>
-      <button ion-button (click)="onEdit()">
-        <ion-icon name="create"></ion-icon>
+      <button ion-button (click)="onHome()">
+        <ion-icon name="information-circle"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Profil</ion-title>
+    <ion-title align="center">Profil</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="home">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
     <ion-card>
         <!-- <button ion-button (click)="selectImage()">
             <ion-icon name="camera"></ion-icon>
         </button> -->
+        <ion-fab right>
+            <button ion-fab mini color="primary" (click)="onEdit()">
+                <ion-icon name="create"></ion-icon>
+            </button>
+        </ion-fab>
+  
         <ion-avatar>
             <img src="assets/img/peopleicon.png" />
         </ion-avatar>
@@ -34,19 +44,7 @@
     </ion-card>
 
 
-    <ion-list>
-      <!-- <ion-item-divider>
-        Sumbangan
-      </ion-item-divider> -->
-
-      <!-- <button ion-item>
-        <ion-icon name="flower" item-start></ion-icon>
-        Transaksi Fidyah
-      </button> -->
-
-      <!-- <ion-item-divider>
-        Lebih Lanjut
-      </ion-item-divider> -->
+    <ion-list no-lines>
 
       <button ion-item>
           <ion-icon name="mail" item-left></ion-icon>
@@ -55,19 +53,25 @@
 
       <button ion-item>
           <ion-icon name="call" item-left></ion-icon>
-          <a class="plainText" href="">{{profile.tel}}</a>
+          <a class="plainText">{{profile.tel}}</a>
       </button>
 
-      <!-- <button ion-item>
-          <ion-icon name="home" item-left></ion-icon>
-          <a class="plainText">17, Lorong Cakera Purnama 12/13D 42300 Bandar Puncak Alam, Selangor</a>
-      </button> -->
+      <button ion-item>
+            <ion-icon name="card" item-left></ion-icon>
+            <a class="plainText">{{profile.ic}}</a>
+        </button>
 
-      <button ion-item item-start (click)="onTrans()">
+      <button ion-item item-start *ngIf="show" (click)="onTrans()">
         <ion-icon name="stats" item-left></ion-icon>
         Sejarah Transaksi
         <ion-icon name="arrow-dropright" item-right></ion-icon>
       </button>
+
+      <button ion-item item-start  (click)="onLogout()">
+        <ion-icon name="log-out" item-left></ion-icon>
+        Log Keluar
+      </button>
+
 
     </ion-list>
 

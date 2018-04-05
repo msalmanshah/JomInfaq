@@ -11,18 +11,21 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
+  <ion-item class="item-inner">
     <ion-label color="primary" stacked>Jenis Transaksi</ion-label>
     <ion-input [(ngModel)]="type" readonly></ion-input> 
   </ion-item>
-  <ion-item>
-    <ion-label color="primary" stacked>RM</ion-label>
-    <ion-input [(ngModel)]="amount" type="number" placeholder="5" min="5" required></ion-input>  
-  </ion-item>
-  <ion-note style="color:red;" padding>*Minimum Transaksi adalah RM5.00</ion-note>
+
+  <form [formGroup]="infaqform">
+    <ion-item>
+      <ion-label color="primary" stacked>RM</ion-label>
+      <ion-input formControlName="amount" [(ngModel)]="amountstr" type="number"  required></ion-input>  
+    </ion-item>
+    <ion-note style="color:red;" padding *ngIf="!infaqform.controls.amount.valid  && (infaqform.controls.amount.dirty || submitAttempt)">*Minimum Transaksi adalah RM5.00</ion-note>
+  </form>
 
   <br>
-  <button ion-button color="primary" (click)="onPay()" block>TERUSKAN</button>
+  <button ion-button color="primary" (click)="onPay()" [disabled]="!infaqform.valid" block>TERUSKAN</button>
   <hr>
   <ion-grid>
     <ion-row>

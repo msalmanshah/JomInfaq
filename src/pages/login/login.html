@@ -8,6 +8,7 @@
       <h2 ion-text  style="margin-top: 0px;">
         <strong>JOM INFAQ</strong> 
       </h2>
+      <p ion-text style="font-style: italic;">''Derma di mana sahaja''</p>
     </div>
 
     <form  #f="ngForm" (ngSubmit)="onSignIn(f)">
@@ -27,12 +28,13 @@
 
       <!-- <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p> -->
 
-      <div>
-        <button ion-button icon-start block color="dark" tappable type="submit" [disabled]="!f.valid">
+      <div align="center">
+        <button ion-button icon-start round color="secondary" tappable type="submit" [disabled]="!f.valid">
           <ion-icon name="log-in"></ion-icon>
-          LOG MASUK
+          Ayuh Infaq!
         </button>
-
+      </div>
+    </form>
         <!-- <p text-center ion-text color="secondary">Log masuk dengan:</p>
         <ion-grid>
           <ion-row>
@@ -53,13 +55,10 @@
             </ion-col>
           </ion-row>
         </ion-grid> -->
-      </div>
-    </form>
-
+ 
     <!-- Other links -->
-    <div text-center margin-top>
+    <!-- <div text-center margin-top>
       <span ion-text color="secondary" tappable (click)="Register()" >Tiada akaun? <strong>Daftar di sini</strong></span>
-    </div>
-
+    </div> -->
   </div>
 </ion-content>

@@ -15,9 +15,9 @@ export class PaymentPage {
   amt:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController, private toastCtrl:ToastController, private loadingCtrl:LoadingController) {
-    this.desc = "Jom Infaq";
-    this.icno = "950821105133";
-    this.name = "Muhammad Salman bin Mohd Shah";
+    this.desc = this.navParams.get('type');
+    this.icno = this.navParams.get('ic');
+    this.name = this.navParams.get('name');
     this.amt = this.navParams.get('amt');
   }
 

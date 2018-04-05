@@ -1,8 +1,15 @@
 {
   "name": "JomInfaq",
   "app_id": "faad2daf",
+  "proxies": [
+    {
+      "path": "/ionic",
+      "proxyUrl": "https://localhost"
+    }
+  ],
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
   }
+  
 }

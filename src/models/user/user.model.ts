@@ -1,5 +1,5 @@
 export class User {
-    constructor(public name: string, public tel:string) {}
+    constructor(public name: string, public tel:string, public ic:string) {}
   }
   
 

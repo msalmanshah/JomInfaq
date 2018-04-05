@@ -1,78 +1,39 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>Zakat</ion-title>
+      
+      <ion-buttons right>
+          <button ion-button (click)="onHome()">
+            <ion-icon name="information-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+    <ion-title style="text-align:center;">Zakat</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <!-- <ion-list>
-    <button ion-item>
-      <ion-icon name="document" item-start></ion-icon>
-      Skim Infaq
-    </button>
-    <button ion-item (click)="onApply()">
-      <ion-icon name="paper" item-start></ion-icon>
-      Borang Bantuan Zakat
-    </button>
-  </ion-list> -->
-  <ion-card>
+
+  <ion-card class="card-bg">
     <ion-card-content>
       ” (Mereka tetap tinggal) tetapi Rasulullah dan orang-orang yang beriman bersamanya, berjihad dengan harta benda dan jiwa mereka itulah orang-orang yang mendapat kelebihan dan mereka itulah juga yang berjaya.     ”
       [At-Taubah : 88]
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
-    <button ion-item (click)="Redirect()">
-      <ion-icon name="link" item-start></ion-icon>
-      <a>Skim Infaq UTM</a>
-      <p>Login > Caruman Zakat > Bayaran </p>
+  
+  <ion-list padding > 
+    <button ion-item (click)="Redirect()" style="background-color: #f44336 !important;">
+      <ion-icon style="font-size: 20px;color: white;vertical-align:middle;" name="exit" item-start></ion-icon>
+      <a href="" style="color: white;" align="justify">Skim Infaq UTM</a>
+      <p style="color: white;">Caruman Zakat > Bayaran </p>
+      
     </button>
+
   </ion-list>
 
-  <ion-card style="background-color: #f44336 !important;">
+  <p style="color: red;" padding><strong>*Hanya untuk Staf UTM sahaja!</strong></p>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col col-1>
-            <ion-icon name="information-circle" style="font-size: 20px;color: white;vertical-align:middle;"></ion-icon>
-          </ion-col>
-          <ion-col col-11>
-            <p style="color: white;" align="justify">Hanya untuk Staf UTM sahaja!</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-  </ion-card>
-
-
-
-  <!-- <ion-item>
-    <ion-label>ZAKAT</ion-label>
-    <ion-select [(ngModel)]="zakattype">
-      <ion-option value="alfitr">FITRAH</ion-option>
-      <ion-option value="perniagaan">PERNIAGAAN</ion-option>
-      <ion-option value="kwsp">KWSP</ion-option>
-      <ion-option value="saham">SAHAM</ion-option>
-      <ion-option value="pendapatan">PENDAPATAN</ion-option>
-      <ion-option value="wang">WANG SIMPANAN</ion-option>
-      <ion-option value="ternakan">TERNAKAN</ion-option>
-      <ion-option value="emas">EMAS DAN PERAK</ion-option>
-      <ion-option value="pertanian">PERTANIAN</ion-option>
-    </ion-select>
-  </ion-item>
-  <br>
-  <br>
-  <button ion-button color="primary" block (click)="onCalc()">KALKULATOR ZAKAT</button>
-  <br>
-  <button ion-button color="primary" block (click)="onLoad()">BAYAR ZAKAT</button> -->
 
 </ion-content>

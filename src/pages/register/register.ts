@@ -18,10 +18,6 @@ import { Http, Response } from '@angular/http';
 })
 export class RegisterPage {
 
-  user : User = {
-    name : '',
-    tel: '',
-  }
 
   constructor(public navCtrl:NavController, private authService: AuthService, private loadingCtrl:LoadingController, private alertCtrl:AlertController, private userService: UserService, private http:Http) {
 
@@ -37,13 +33,6 @@ export class RegisterPage {
     this.authService.signup(form.value.email,form.value.password)
       .then(data => {
         loading.dismiss();
-        // this.userService.addUser(user).then(ref=> {
-
-        // })
-        // this.navCtrl.push(LoginPage, {
-        //   userInfo : user 
-        // });
-
       })
       .catch(error => {
         loading.dismiss();
