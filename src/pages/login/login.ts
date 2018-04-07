@@ -17,6 +17,7 @@ import { User } from '../../models/user/user.model';
 export class LoginPage {
 
 
+
   constructor(public navCtrl: NavController, 
     private authService: AuthService, 
     private loadingCtrl:LoadingController, 
@@ -25,6 +26,7 @@ export class LoginPage {
     private http:Http) {
 
   }
+
 
   onSignIn(form: NgForm){
     const loading = this.loadingCtrl.create({

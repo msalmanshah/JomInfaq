@@ -1,7 +1,7 @@
+
 <ion-content class="bg">
 
   <div>
-
     <!-- Logo -->
     <div padding-horizontal text-center>
       <div class="logo"></div>
@@ -13,52 +13,25 @@
 
     <form  #f="ngForm" (ngSubmit)="onSignIn(f)">
       <ion-list>
-        <ion-item>
-          <ion-label floating>Emel</ion-label>
+        <ion-item >
+          <ion-label stacked color="primary">Emel</ion-label>
           <ion-input type="email" ngModel name="email" required></ion-input>
         </ion-item>
   
         <ion-item>
-          <ion-label floating>Kata Laluan</ion-label>
+          <ion-label stacked color="primary">Kata Laluan</ion-label>
           <ion-input type="password" ngModel name="password" required></ion-input>
         </ion-item>
       </ion-list>
 
-    
-
-      <!-- <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>Forgot Password?</strong></p> -->
+      <p text-right ion-text color="primary" tappable (click)="forgotPass()"><strong>Lupa Kata Laluan?</strong></p>
 
       <div align="center">
-        <button ion-button icon-start round color="secondary" tappable type="submit" [disabled]="!f.valid">
+        <button ion-button icon-start block color="primary" tappable type="submit" [disabled]="!f.valid">
           <ion-icon name="log-in"></ion-icon>
-          Ayuh Infaq!
+          Jom Infaq!
         </button>
       </div>
     </form>
-        <!-- <p text-center ion-text color="secondary">Log masuk dengan:</p>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-4>
-              <button ion-button icon-only block class="btn-facebook">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-4>
-              <button ion-button icon-only block class="btn-twitter">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </button>
-            </ion-col>
-            <ion-col col-4>
-              <button ion-button icon-only block class="btn-gplus">
-                <ion-icon name="logo-googleplus"></ion-icon>
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid> -->
- 
-    <!-- Other links -->
-    <!-- <div text-center margin-top>
-      <span ion-text color="secondary" tappable (click)="Register()" >Tiada akaun? <strong>Daftar di sini</strong></span>
-    </div> -->
   </div>
 </ion-content>

@@ -96,32 +96,17 @@ export class InfaqPage {
    this.workoutProgress = Math.min( (val * 100), 100) + '%';
   }
 
-  presentModal(title,desc,value) {
-    let ChartModal = this.modalCtrl.create(Chart, { 
+  presentModal(title,value) {
+    this.navCtrl.push(Chart,{
       title: title,
-      desc : desc,
       value : value
-    },
-    {cssClass:"mymodal"}
-  );
-    ChartModal.onDidDismiss(data => {
-      console.log(data);
-    });
-    ChartModal.present();
+    })
+    
   }
 
   onLogout(){
     this.authService.logout();
 
-  }
-
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 1000);
   }
 
   checkProfile() {

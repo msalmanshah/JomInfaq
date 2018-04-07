@@ -4,7 +4,7 @@
   "proxies": [
     {
       "path": "/ionic",
-      "proxyUrl": "https://localhost"
+      "proxyUrl": "http://localhost/ionic/api.php"
     }
   ],
   "type": "ionic-angular",

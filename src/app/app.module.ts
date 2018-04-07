@@ -17,9 +17,7 @@ import { PaymentPage } from '../pages/payment/payment';
 import { ProfilePage } from '../pages/profile/profile';
 
 import { Sautm } from '../pages/infaq/sautm/sautm';
-import { ApplyPage } from '../pages/zakat/apply/apply';
-import { CalcPage } from '../pages/zakat/calc/calc';
-import { Payzakat } from '../pages/zakat/payzakat/payzakat';
+
 import { Payfidyah } from '../pages/fidyah/payfidyah/payfidyah';
 
 import { HistoryPage } from '../pages/profile/history/history';
@@ -45,6 +43,8 @@ import { Chart } from '../pages/infaq/chart/chart';
 import { ChartsModule } from 'ng2-charts';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SlidesPage } from '../pages/slides/slides';
 
 @NgModule({
   declarations: [
@@ -59,12 +59,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ProfilePage,
     Sautm,
     Chart,
-    Payzakat,
     Payfidyah,
     PaymentPage,
-    ApplyPage,
-    CalcPage,
     HistoryPage,
+    SlidesPage,
     ProgressBarComponent
   ],
   imports: [
@@ -74,7 +72,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
     ChartsModule,
-    RoundProgressModule
+    RoundProgressModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -89,11 +88,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     ProfilePage,
     Sautm,
     Chart,
-    Payzakat,
     Payfidyah,
     PaymentPage,
-    ApplyPage,
-    CalcPage,
+    SlidesPage,
     HistoryPage
   ],
   providers: [

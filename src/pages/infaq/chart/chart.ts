@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController, AlertController } from 'ionic-angular';
+import { Sautm } from '../sautm/sautm';
 
-import { Chartjs } from 'chart.js';
 
 @IonicPage()
 @Component({
@@ -13,37 +13,42 @@ export class Chart {
     title:string;
     desc:string;
     value:number;
-    max:number;
 
-    bal:number;
+    ramadhan:boolean = false;
+    skutm:boolean = false;
+    jumaat:boolean = false;
+    masjid:boolean = false;
+    kebajikan:boolean = false;
 
-    // Doughnut
-    public doughnutChartLabels:string[] ;
-    public doughnutChartData:number[];
-    public doughnutChartType:string = 'doughnut';
-
-    // events
-    public chartClicked(e:any):void {
-    console.log(e);
-    }
-
-    public chartHovered(e:any):void {
-    console.log(e);
-    }
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public modalCtrl:ModalController, private viewCtrl:ViewController, private alertCtrl:AlertController) {
     this.title = this.navParams.get('title');
-    this.desc = this.navParams.get('desc');
     this.value = this.navParams.get('value');
-    this.max = 100;
 
-    this.bal = 100 - this.value;
+    if(this.title === "Dana Ramadhan") {
+      this.ramadhan = true;
+    }
+    else if(this.title === "Sekolah Agama UTM") {
+      this.skutm = true;
+    }
+    else if(this.title === "Tabung Masjid") {
+      this.masjid = true;
+    }
+    else if(this.title === "Tabung Jumaat") {
+      this.jumaat = true;
+    }
+    else {
+      this.kebajikan = true;
+    }
 
-    this.doughnutChartLabels = [this.title];
-    this.doughnutChartData = [this.value,this.bal];
   }
 
-  
+  onLoad(desc){
+    this.navCtrl.push(Sautm,{
+    	name: desc,
+    	id: "1"
+    });
+  }
 
   onClose(remove = false){
     this.viewCtrl.dismiss(remove);

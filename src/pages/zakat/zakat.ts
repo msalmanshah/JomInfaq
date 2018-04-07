@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController, ToastController, LoadingController } from 'ionic-angular';
-import { ApplyPage } from './apply/apply';
-import { CalcPage } from './calc/calc';
-import { Payzakat } from './payzakat/payzakat';
+
 
 import { InAppBrowser, InAppBrowserOptions } from "@ionic-native/in-app-browser";
 import { AuthService } from '../../services/auth';
@@ -32,21 +30,6 @@ export class ZakatPage {
      
   }
 
-  onApply(){
-    const modal = this.modalCtrl.create(ApplyPage);
-    modal.present();
-  }
-
-  onCalc(){
-    const modal = this.modalCtrl.create(CalcPage);
-    modal.present();
-  }
-
-  onLoad(zakat){
-    this.navCtrl.push(Payzakat,{
-      zakattype: this.zakattype
-    });
-  }
 
   Redirect() {
 
@@ -63,13 +46,4 @@ export class ZakatPage {
     this.navCtrl.push(HomePage);
   }
   
-
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 1000);
-  }
 }

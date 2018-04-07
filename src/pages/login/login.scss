@@ -14,59 +14,15 @@ page-login {
         background-size: cover;
     }
 
-    // .auth-page {
-    //     background-color: #fff;
-    //     &::after {
-    //       content: "";
-    //       background: url("../assets/img/bg.jpg") no-repeat;
-    //       background-size: cover;
-    //       top: 0;
-    //       left: 0;
-    //       bottom: 0;
-    //       right: 0;
-    //       position: absolute;
-    //       z-index: 0;
-    //     }
-      
-    //     .scroll-content {
-    //       display: flex;
-    //       align-items: center;
-    //       justify-content: center;
-    //       overflow: hidden;
-    //       //background: rgba(50, 10, 92, .4);
-            
-    //         .login-content {
-    //             width: 66%;
-        
-                
-        
-    //             .list-form {
-    //             padding: 0;
-    //             margin-bottom: 0;
-        
-    //             ion-item {
-    //                 background: none;
-    //                 padding: 0;
-        
-    //                 &:first-child {
-    //                 border-top: none;
-    //                 }
-        
-    //                 &:after {
-    //                 display: none;
-    //                 }
-        
-    //                 ion-label {
-    //                 font-size: 1em;
-    //                 color: color($colors, primary);
-    //                 }
-        
-    //                 input {
-    //                 color: color($colors, primary);
-    //                 }
-    //             }
-    //             }
-    //         }
-    //     }
-    // }
+    form {
+        margin-bottom: 20px;
+        button {
+          margin-top: 20px !important;
+        }
+        p {
+          font-style: italic;
+          color: red;
+        }
+      }
+    
 }

@@ -13,6 +13,7 @@ import { ProfilePage } from '../../profile/profile';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InfaqValidator } from '../../../validators/infaqvalidator';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
@@ -46,7 +47,8 @@ export class Sautm {
     private auth:AuthService,
     private userlist:UserService,
     private http:Http,
-    public formbuilder:FormBuilder) {
+    public formbuilder:FormBuilder,
+    private inAppBrowser:InAppBrowser) {
       this.type = this.navParams.get('name');
       this.id = this.navParams.get('id');
       this.fetchUserInfo();
@@ -128,15 +130,18 @@ export class Sautm {
                 urlSearchParams.append('type', this.type);
                 urlSearchParams.append('amount', this.amount.toString());
 
-                this.http.post('https://localhost/ionic/api.php', urlSearchParams)
+                this.http.post('http://localhost/ionic/api.php', urlSearchParams)
                   .subscribe(
                       data => {
                         console.log('Success');
+                        
                       },
                       error => {
                         console.log(JSON.stringify(error.json()));
                       }
                 );
+
+                const browser = this.inAppBrowser.create('http://localhost/ionic/api.php');
 
               }
             }

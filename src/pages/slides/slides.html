@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-slides autoplay="3000" loop="false" pager (ionSlideDidChange)="slideChanged()" (ionSlideDrag)="slideMoved()">
+
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat" [@bounce]='state' (@bounce.done)="animationDone($event)">
+        <ion-icon ios="ios-heart-outline" md="md-heart-outline" color="primary"></ion-icon>
+      </div>
+      <div >
+        <h2>Ayuh Sedekah</h2>
+        <p>Buat Kerja Amal Anda Secara Mudah Alih</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat" [@bounce]='state'>
+        <ion-icon ios="ios-analytics" md="md-analytics" color="primary"></ion-icon>
+      </div>
+      <div [@bounce]='state'>
+        <h2>Lihat Pencapaian</h2>
+        <p>Statistik Yang Dibuat Berdasarkan Sumbangan Anda</p>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="diag" style="background: url('assets/img/whitebg.svg') no-repeat" [@bounce]='state'>
+        <ion-icon ios="ios-trophy" md="md-trophy" color="primary"></ion-icon>
+      </div>
+      <div [@bounce]='state'>
+        <h2> Melangkah Bersama Untuk Dunia Yang Lebih Baik</h2>
+        <button ion-button outline round (click)="skip()"><strong>Daftar Masuk</strong></button>
+      </div>
+    </ion-slide>
+
+  <!-- <button (click)="skip()" id="skip">{{ skipMsg }}</button> -->
+
+  </ion-slides>
+</ion-content>
+

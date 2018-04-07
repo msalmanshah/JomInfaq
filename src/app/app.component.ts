@@ -16,6 +16,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { AuthService } from '../services/auth';
 
 import { FIREBASE_CONFIG } from './firebase.credential';
+import { SlidesPage } from '../pages/slides/slides';
 
 @Component({
   templateUrl: 'app.html'
@@ -51,7 +52,7 @@ export class MyApp {
         }
         else {
           this.isAuthenticated = false;
-          this.rootPage = LoginPage;
+          this.rootPage = SlidesPage;
         }
     });
 
