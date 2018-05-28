@@ -7,6 +7,9 @@ import { AuthService } from '../../services/auth';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user/user.model';
 import { HomePage } from '../home/home';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 @IonicPage()
 @Component({
@@ -16,13 +19,13 @@ import { HomePage } from '../home/home';
 export class InfaqPage {
 
   skutmgoals : number = 9000000;
-  skutmcurrent:number = 1437917.40;
+  skutmcurrent:number = 1437917;
   skutmprogress:number;
   skutmstrcur:string;
   skutmstrgoal:string;
 
-  ramadhangoals : number = 5000000;
-  ramadhancurrent :number = 1467590.50;
+  ramadhangoals : number = 250000;
+  ramadhancurrent :number = 85640.50;
   ramadhanprogress:number;
   ramadhanstrcur:string;
   ramadhanstrgoal:string;
@@ -33,17 +36,19 @@ export class InfaqPage {
   masjidstrcur:string;
   masjidstrgoal:string;
 
-  jumaatgoals:number = 4000000;
+  jumaatgoals:number = 2000000;
   jumaatcurrent:number = 1456722.10;
   jumaat:number;
   jumaatstrcur:string;
   jumaatstrgoal:string;
 
   kebajikangoals:number = 5000000;
-  kebajikancurrent:number = 3500000;
+  kebajikancurrent:number = 3505875;
   kebajikan:number;
   kebajikanstrcur:string;
   kebajikanstrgoal:string;
+  infaqList: Observable<any[]>;
+  registerListRef: AngularFireList<any>;
 
   constructor(public navCtrl: NavController, 
     private alertCtrl: AlertController, 
@@ -52,9 +57,12 @@ export class InfaqPage {
     private userlist:UserService,
     private auth:AuthService,
     private toastCtrl:ToastController,
-    private loadingCtrl:LoadingController) {
+    private loadingCtrl:LoadingController,
+    private db:AngularFireDatabase) {
 
     this.checkProfile(); 
+    this.infaqList = db.list('infaq').valueChanges();
+
       
     this.skutmprogress = Math.round((this.skutmcurrent / this.skutmgoals) * 100);
     this.ramadhanprogress = Math.round((this.ramadhancurrent / this.ramadhangoals) * 100);
@@ -96,10 +104,12 @@ export class InfaqPage {
    this.workoutProgress = Math.min( (val * 100), 100) + '%';
   }
 
-  presentModal(title,value) {
+  presentModal(title,desc,current,goal) {
     this.navCtrl.push(Chart,{
       title: title,
-      value : value
+      desc : desc,
+      current:current,
+      goal:goal
     })
     
   }

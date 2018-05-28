@@ -1,7 +1,15 @@
 page-zakat {
     .card-bg{
-        background-color: #7B68EE !important;
+        background-color: #666 !important;
         font-style:italic;
         color: #fff;
+    }
+    .numberCircle {
+        width: 20px;
+        line-height: 20px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 16px;
+        border: 2px solid #666;
     }
 }

@@ -18,9 +18,19 @@
 
   <form [formGroup]="infaqform">
     <ion-item>
-      <ion-label color="primary" stacked>RM</ion-label>
-      <ion-input formControlName="amount" [(ngModel)]="amountstr" type="number"  required></ion-input>  
-    </ion-item>
+      <ion-label color="primary">Sila pilih jumlah (RM)</ion-label>
+      <ion-select formControlName="amount" [(ngModel)]="amount" >
+        <ion-option selectedText value="5">5</ion-option>
+        <ion-option value="10">10</ion-option>
+        <ion-option value="15">15</ion-option>
+        <ion-option value="20">20</ion-option>
+        <ion-option value="50">50</ion-option>
+        <ion-option value="100">100</ion-option>
+        <ion-option value="200">200</ion-option>
+        <ion-option value="500">500</ion-option>
+        <ion-option value="1000">1000</ion-option>
+      </ion-select>
+  </ion-item>
     <ion-note style="color:red;" padding *ngIf="!infaqform.controls.amount.valid  && (infaqform.controls.amount.dirty || submitAttempt)">*Minimum Transaksi adalah RM5.00</ion-note>
   </form>
 

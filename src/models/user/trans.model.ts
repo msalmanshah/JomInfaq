@@ -4,7 +4,8 @@ export class Trans {
         public transid:string, 
         public type:string, 
         public amount:number, 
-        public status:string) {
+        public status:string,
+        public name:string) {
 
         }
   }

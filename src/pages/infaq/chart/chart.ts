@@ -13,6 +13,8 @@ export class Chart {
     title:string;
     desc:string;
     value:number;
+    current:number;
+    goal:number;
 
     ramadhan:boolean = false;
     skutm:boolean = false;
@@ -24,22 +26,9 @@ export class Chart {
   constructor(public navCtrl: NavController, private navParams: NavParams, public modalCtrl:ModalController, private viewCtrl:ViewController, private alertCtrl:AlertController) {
     this.title = this.navParams.get('title');
     this.value = this.navParams.get('value');
-
-    if(this.title === "Dana Ramadhan") {
-      this.ramadhan = true;
-    }
-    else if(this.title === "Sekolah Agama UTM") {
-      this.skutm = true;
-    }
-    else if(this.title === "Tabung Masjid") {
-      this.masjid = true;
-    }
-    else if(this.title === "Tabung Jumaat") {
-      this.jumaat = true;
-    }
-    else {
-      this.kebajikan = true;
-    }
+    this.desc = this.navParams.get('desc');
+    this.current = this.navParams.get('current');
+    this.goal = this.navParams.get('goal');
 
   }
 

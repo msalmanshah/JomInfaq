@@ -22,7 +22,7 @@ export class Payfidyah {
     transdate = new Date();
     status:string = "Processing";
     profile : User = new User('','','');
-    trans : Trans = new Trans(new Date(),'','',0,'');
+    trans : Trans = new Trans(new Date(),'','',0,'','');
     amountstr:string;
 
   constructor(public navCtrl: NavController, 
@@ -35,7 +35,7 @@ export class Payfidyah {
     private userlist:UserService) {
       this.amount = this.navParams.get('totalfidyah');
       this.amountstr = this.amount.toLocaleString('en-us', {minimumFractionDigits: 2});
-      this.transid = "FID000"+Payfidyah.id++;
+      this.transid = "FIDYAH";
 
       this.fetchUserInfo();
   }
@@ -73,18 +73,21 @@ export class Payfidyah {
               amt : this.amount,
               name: this.profile.name,
               ic:this.profile.ic,
-              type: this.type
+              type: this.type,
+              transid : this.transid,
+              status:this.status
             });
             modal.present();
 
-            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.amount,this.status);
+            this.translist.addNewTrans(this.transdate,this.transid,this.type,this.amount,this.status,this.auth.getActiveUser().email);
             this.auth.getActiveUser().getToken()
               .then((token:string) => {
                 this.translist.storeTrans(token)
-                  .subscribe ( ( ) => console.log('Success!'),
-                  error => {
-                    console.log('error');
-                  });
+                .subscribe ( ( ) => console.log('Success!'),
+                error => {
+                  console.log('error');
+                });
+                
             })
 
           }

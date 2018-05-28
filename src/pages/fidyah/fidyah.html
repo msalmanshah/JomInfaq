@@ -7,19 +7,14 @@
             <ion-icon name="information-circle"></ion-icon>
           </button>
         </ion-buttons>
-    <ion-title align="center">Fidyah</ion-title>
+    <ion-title style="text-align:center;">Fidyah</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
-  <ion-card class="card-bg" >
-    <ion-card-content >
-    "Dan orang-orang yang tidak mampu berpuasa hendaknya membayar fidyah, dengan memberi makan seorang miskin" [Al-Baqarah : 184]
-    </ion-card-content>
-  </ion-card>
+  <br/>
   <ion-note style="color:red;" padding><strong>*Masukkan info pembayaran Fidyah</strong></ion-note>
 
   <form [formGroup]="fidyahform">
@@ -52,9 +47,8 @@
   
   <hr>
   <ion-list padding> 
-    <button ion-item style="background-color: #4682B4 !important;">     
-      <ion-label color="white">Bayaran Dikenakan : &nbsp;&nbsp; <strong>RM</strong></ion-label>
-      <ion-input style="color:#fff;" [(ngModel)]="fidyahamtstr" readonly></ion-input>
+    <button ion-item style="background-color: #f53d3d !important;">     
+      <ion-label color="white">Bayaran Dikenakan : &nbsp;&nbsp; <strong>RM{{fidyahamtstr}}</strong></ion-label>
     </button>
 
   </ion-list>

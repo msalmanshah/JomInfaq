@@ -14,25 +14,24 @@
 
 <ion-content padding class="card-background-page">
     
-    <ion-card>
+    <ion-card *ngFor = "let list of infaqList | async">
         <img src="assets/img/ramadan.jpg" style="height:200px;"/>
-        <div class="card-title">Dana Ramadhan</div>
-        <ion-row>
-          <progress-bar [progress]="ramadhanprogress" style="width: 100%;"></progress-bar>
-        </ion-row>
+        <div class="card-title">{{list.name}}</div>
+        <hr>
         <div class="border-bottom">
-          <h1 ion-text color="dark" class="bold">RM {{ramadhanstrcur}}</h1>
-          <span ion-text color="dark">tercapai daripada RM {{ramadhanstrgoal}}</span>
+          <h1 color="primary" class="bold">RM<span color="primary" class="bold" countUp [endVal]="list.current" duration="5" reanimateOnClick="true"></span></h1>
+          <span ion-text color="dark">tercapai daripada RM {{list.goal}}</span>
         </div>
+        
         <ion-row>
           <ion-col col-5>
-            <button ion-button icon-left clear small (click)="presentModal('Dana Ramadhan',ramadhanprogress)">
+            <button ion-button icon-left clear small (click)="presentModal(list.name,list.desc,list.current,list.goal)">
             <ion-icon name="information-circle"></ion-icon>
             <div>Lebih Lanjut</div>
           </button>
           </ion-col>
           <ion-col col-7>
-            <button ion-button icon-left clear small (click)="onLoad('Dana Ramadhan')">
+            <button ion-button icon-left clear small (click)="onLoad(list.name)">
             <ion-icon name="share-alt"></ion-icon>
             <div>Sedekah Sekarang</div>
           </button>
@@ -40,7 +39,7 @@
         </ion-row>
       </ion-card>
 
-  <ion-card >
+  <!-- <ion-card >
     <img src="assets/img/skutm.jpg" style="height:200px;"/>
     <div class="card-title">Sekolah Agama UTM</div>
 
@@ -48,9 +47,10 @@
       <progress-bar [progress]="skutmprogress" style="width: 100%;"></progress-bar>
     </ion-row>
     <div class="border-bottom">
-      <h1 ion-text color="dark" class="bold">RM {{skutmstrcur}}</h1>
+        <h1 color="dark" class="bold">RM<span color="dark" class="bold" countUp [endVal]="skutmcurrent" duration="5" reanimateOnClick="true"></span></h1>
       <span ion-text color="dark">tercapai daripada RM {{skutmstrgoal}}</span>
     </div>
+    
     <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Sekolah Agama UTM',skutmprogress)" >
@@ -75,9 +75,10 @@
       <progress-bar [progress]="masjid" style="width: 100%;"></progress-bar>
     </ion-row>
     <div class="border-bottom">
-      <h1 ion-text color="dark" class="bold">RM {{masjidstrcur}}</h1>
+        <h1 color="dark" class="bold">RM<span color="dark" class="bold" countUp [endVal]="masjidcurrent" duration="5" reanimateOnClick="true"></span></h1>
       <span ion-text color="dark">tercapai daripada RM {{masjidstrgoal}}</span>
     </div>
+    
     <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Tabung Masjid',masjid)">
@@ -101,9 +102,10 @@
       <progress-bar [progress]="jumaat" style="width: 100%;"></progress-bar>
     </ion-row>
     <div class="border-bottom">
-      <h1 ion-text color="dark" class="bold">RM {{jumaatstrcur}}</h1>
+        <h1 color="dark" class="bold">RM<span color="dark" class="bold" countUp [endVal]="jumaatcurrent" duration="5" reanimateOnClick="true"></span></h1>
       <span ion-text color="dark">tercapai daripada RM {{jumaatstrgoal}}</span>
     </div>
+    
     <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Tabung Jumaat',jumaat)">
@@ -127,9 +129,10 @@
       <progress-bar [progress]="kebajikan" style="width: 100%;"></progress-bar>
     </ion-row>
     <div class="border-bottom">
-      <h1 ion-text color="dark" class="bold">RM {{kebajikanstrcur}}</h1>
+        <h1 color="dark" class="bold">RM<span color="dark" class="bold" countUp [endVal]="kebajikancurrent" duration="5" reanimateOnClick="true"></span></h1>
       <span ion-text color="dark">tercapai daripada RM {{kebajikanstrgoal}}</span>
     </div>
+    
     <ion-row>
       <ion-col col-5>
         <button ion-button icon-left clear small (click)="presentModal('Kebajikan Mahasiswa',kebajikan)">
@@ -144,6 +147,6 @@
         </button>
       </ion-col>
     </ion-row>
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>

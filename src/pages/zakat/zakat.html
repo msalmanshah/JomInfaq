@@ -1,12 +1,12 @@
 <ion-header>
 
   <ion-navbar color="primary">
-      
-      <ion-buttons right>
-          <button ion-button (click)="onHome()">
-            <ion-icon name="information-circle"></ion-icon>
-          </button>
-        </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button (click)="onHome()">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title style="text-align:center;">Zakat</ion-title>
   </ion-navbar>
 
@@ -17,23 +17,118 @@
 
   <ion-card class="card-bg">
     <ion-card-content>
-      ” (Mereka tetap tinggal) tetapi Rasulullah dan orang-orang yang beriman bersamanya, berjihad dengan harta benda dan jiwa mereka itulah orang-orang yang mendapat kelebihan dan mereka itulah juga yang berjaya.     ”
-      [At-Taubah : 88]
+      Zakat Fitrah ialah zakat diri yang difardhukan ke atas setiap individu lelaki dan perempuan muslim yang berkemampuan dengan
+      syarat-syarat yang ditetapkan.
     </ion-card-content>
   </ion-card>
 
-  
-  <ion-list padding > 
-    <button ion-item (click)="Redirect()" style="background-color: #f44336 !important;">
-      <ion-icon style="font-size: 20px;color: white;vertical-align:middle;" name="exit" item-start></ion-icon>
-      <a href="" style="color: white;" align="justify">Skim Infaq UTM</a>
-      <p style="color: white;">Caruman Zakat > Bayaran </p>
-      
+  <br/>
+  <ion-note style="color:red;" padding>
+    <strong>*Masukkan info pembayaran Zakat Fitrah</strong>
+  </ion-note>
+
+    <ion-grid>
+      <ion-row>
+        <ion-label color="primary">Negeri</ion-label>
+        <ion-select  [(ngModel)]="negeri">
+          <ion-option selectedText value="Johor">Johor</ion-option>
+          <ion-option value="Selangor">Selangor</ion-option>
+          <ion-option value="Kuala Lumpur">Kuala Lumpur</ion-option>
+          <ion-option value="Perlis">Perlis</ion-option>
+          <ion-option value="Kedah">Kedah</ion-option>
+          <ion-option value="Kelantan">Kelantan</ion-option>
+          <ion-option value="Pahang">Pahang</ion-option>
+          <ion-option value="Terengganu">Terengganu</ion-option>
+          <ion-option value="Sabah">Sabah</ion-option>
+          <ion-option value="Sarawak">Sarawak</ion-option>
+          <ion-option value="Melaka">Melaka</ion-option>
+          <ion-option value="Negeri Sembilan">Negeri Sembilan</ion-option>
+        </ion-select>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-9>
+          <ion-label color="primary">
+            <strong>Bilangan orang</strong>
+          </ion-label>
+        </ion-col>
+        <ion-col col-3>
+          <ion-input  [(ngModel)]="zakatjumlah" type="number" placeholder="0" (ngModelChange)="onChange()"
+            required></ion-input>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-note style="color:red;" *ngIf="!zakatform.controls.zakatjumlah.valid  && (zakatform.controls.zakatjumlah.dirty || submitAttempt)">
+        *Sila masukkan nombor yang tepat
+      </ion-note> -->
+    </ion-grid>
+ 
+
+
+  <ion-list padding>
+    <button ion-item style="background-color: #f53d3d !important;">
+      <ion-label color="white">Bayaran Dikenakan : &nbsp;&nbsp;
+        <strong>RM{{zakatamt}}</strong>
+      </ion-label>
     </button>
 
   </ion-list>
 
-  <p style="color: red;" padding><strong>*Hanya untuk Staf UTM sahaja!</strong></p>
+  <div style="text-align: center;">
 
+    <button ion-button color="primary" (click)="onPay()">
+
+      <p style="color:#fff;font-style:bold;">Bayar Zakat</p>
+    </button>
+  </div>
+
+  <!-- <ion-list padding > 
+    <button ion-item (click)="Redirect()" style="background-color: #836e2c !important;">
+      <ion-icon style="font-size: 20px;color: white;vertical-align:middle;" name="exit" item-start></ion-icon>
+      <a href="" style="color: white;" align="justify">Skim Infaq UTM</a>
+    </button>
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+            <div class="numberCircle">1</div>
+        </ion-col>
+        <ion-col col-10>
+            Tekan pada link di atas
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-2>
+            <div class="numberCircle">2</div>
+        </ion-col>
+        <ion-col col-10>
+            Log Masuk dalam sistem my.utm.my
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-2>
+            <div class="numberCircle">3</div>
+        </ion-col>
+        <ion-col col-10>
+            Pergi ke tab Caruman Zakat
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-2>
+            <div class="numberCircle">4</div>
+        </ion-col>
+        <ion-col col-10>
+            Pilih bahagian Bayaran
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <div style="color: red;" padding><strong>*Hanya untuk Staf UTM sahaja!</strong></div>
+      </ion-row>
+    </ion-grid>
+
+  </ion-list> -->
 
 </ion-content>

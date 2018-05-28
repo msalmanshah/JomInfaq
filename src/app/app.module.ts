@@ -45,6 +45,7 @@ import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SlidesPage } from '../pages/slides/slides';
+import { CountUpModule } from 'countup.js-angular2';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { SlidesPage } from '../pages/slides/slides';
     AngularFireDatabaseModule,
     ChartsModule,
     RoundProgressModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CountUpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

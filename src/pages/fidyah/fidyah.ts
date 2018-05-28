@@ -6,12 +6,7 @@ import { HomePage } from '../home/home';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
-/**
- * Generated class for the FidyahPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -23,8 +18,8 @@ export class FidyahPage {
   fidyahform:FormGroup;
 
   fidyahamt:number = 0 ;
-  fidyahhari:number = 1;
-  fidyahtahun:number = 1;
+  fidyahhari:number;
+  fidyahtahun:number;
   fidyahamtstr:string;
   submitAttempt:boolean = false;
 
@@ -57,7 +52,13 @@ export class FidyahPage {
 
   onChange() {
     this.fidyahamt = Math.round( ( +this.fidyahtahun * +this.fidyahhari * 2.0) * 100 ) / 100;
-    this.fidyahamtstr = this.fidyahamt.toLocaleString('en-us', {minimumFractionDigits: 2});
+    if(isNaN(this.fidyahamt)) {
+      this.fidyahamt = 0 ;
+      this.fidyahamtstr = this.fidyahamt.toLocaleString('en-us', {minimumFractionDigits: 2});
+    }
+    else {
+      this.fidyahamtstr = this.fidyahamt.toLocaleString('en-us', {minimumFractionDigits: 2});
+    }
   }
 
  

@@ -8,169 +8,24 @@
 
 <ion-content>
 
-  <ion-card *ngIf="ramadhan"> 
-    <img src="assets/img/ramadhan2.jpg"/>
+  <ion-card > 
+    <img src="assets/img/masjid2.jpg"/>
     <ion-card-content>
       <ion-card-title>
-        Dana Ramadhan
+        {{title}}
         </ion-card-title>
       <p>
-        Menjelang Ramadhan yang akan tiba. Pelbagai aktiviti akan dijalankan bagi memeriahkan lagi suasana Ramadhan di UTM Skudai.
-        Antara aktiviti yang akan dijalankan adalah:
+        {{desc}}
       </p>
-      <div class="border-bottom">
-        <ul class="highlight">
-          <li>
-            <ion-icon name="checkmark" class="text-green"></ion-icon>
-            <span ion-text color="primary">Majlis Berbuka Puasa</span>
-          </li>
-          <li>
-              <ion-icon name="checkmark" class="text-green"></ion-icon>
-              <span ion-text color="primary">Sahur</span>
-          </li>
-          <li>
-            <ion-icon name="checkmark" class="text-green"></ion-icon>
-            <span ion-text color="primary">Terawih Berjemaah</span>
-        </li>
-        </ul>
-      </div>
-      <button ion-button icon-left clear small right (click)="onLoad('Dana Ramadhan')">
+      <br/>
+      <h2><b>Jumlah Sekarang: </b>RM{{current}}</h2>
+      <h2><b>Jumlah Capaian: </b>RM{{goal}}</h2>
+      <button ion-button icon-left clear small right (click)="onLoad(title)">
           <ion-icon name="share-alt"></ion-icon>
           <div>Sedekah Sekarang</div>
       </button>
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="skutm"> 
-      <img src="assets/img/skutm2.jpg"/>
-      <ion-card-content>
-        <ion-card-title>
-          Sekolah Agama UTM
-        </ion-card-title>
-        <p>
-            Pembinaan bangunan Sekolah Agama UTM (SAUTM) yang baharu bagi memudahkan kemudahan warga SAUTM dalam menguruskan:
-            
-        </p>
-        <div class="border-bottom">
-          <ul class="highlight">
-            <li>
-              <ion-icon name="checkmark" class="text-green"></ion-icon>
-              <span ion-text color="primary">Penambahan Pelajar</span>
-            </li>
-            <li>
-                <ion-icon name="checkmark" class="text-green"></ion-icon>
-                <span ion-text color="primary">Pengajaran dan Pembelajaran yang Kondusif, Selesa dan Selamat</span>
-            </li>
-            <li>
-              <ion-icon name="checkmark" class="text-green"></ion-icon>
-              <span ion-text color="primary">Motivasi dan Pencetus Aspirasi</span>
-            </li>
-            <li>
-                <ion-icon name="checkmark" class="text-green"></ion-icon>
-                <span ion-text color="primary">Aktiviti Pembinaan Sahsiah</span>
-            </li>
-          </ul>
-        </div>
-        <button ion-button icon-left clear small right (click)="onLoad('Sekolah Agama UTM')">
-            <ion-icon name="share-alt"></ion-icon>
-            <div>Sedekah Sekarang</div>
-        </button>
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card *ngIf="masjid"> 
-        <img src="assets/img/masjid2.jpg"/>
-        <ion-card-content>
-          <ion-card-title>
-            Tabung Masjid
-            </ion-card-title>
-          <p>
-              Masjid Sultan Ismail terletak di Dataran Tinggi di tengah-tengah kampus. 
-              Kedudukan ini juga selaras dengan konsep pembelajaran Islam yang menjadikan masjid sebagai sumber memperoleh dan menyebarkan ilmu.
-              Pelbagai aktiviti dijalan di Masjid ini antaranya ialah:
-          </p>
-          <div class="border-bottom">
-            <ul class="highlight">
-              <li>
-                <ion-icon name="checkmark" class="text-green"></ion-icon>
-                <span ion-text color="primary">Kelas Tafaquh</span>
-              </li>
-              <li>
-                  <ion-icon name="checkmark" class="text-green"></ion-icon>
-                  <span ion-text color="primary">Kuliah@MSI</span>
-              </li>
-              <li>
-                <ion-icon name="checkmark" class="text-green"></ion-icon>
-                <span ion-text color="primary">Pengurusan Jenazah</span>
-            </li>
-            </ul>
-          </div>
-          <button ion-button icon-left clear small right (click)="onLoad('Tabung Masjid')">
-              <ion-icon name="share-alt"></ion-icon>
-              <div>Sedekah Sekarang</div>
-          </button>
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card *ngIf="jumaat"> 
-          <img src="assets/img/jumaat2.jpg"/>
-          <ion-card-content>
-            <ion-card-title>
-              Tabung Jumaat
-              </ion-card-title>
-            <p>
-                Dikatakan bahawa sedekah di hari jumaat lebih utama daripada hari-hari lain. 
-                Hal ini sesuai dengan keterangan dari Ibnul Qoyim dalam kitabnya Zadul Ma’ad. 
-                Dalam kitabnya, ulama besar itu menyatakan bahwa sedekah di hari jumaat memiliki keistimewaan khusus 
-                dibandingkan hari lain sebagaimana sedekah di bulan Ramadhan dengan sedekah di bulan selainnya.
-            </p>
-            <!-- <div class="border-bottom">
-              <ul class="highlight">
-                <li>
-                  <ion-icon name="checkmark" class="text-green"></ion-icon>
-                  <span ion-text color="primary">Majlis Berbuka Puasa</span>
-                </li>
-              </ul>
-            </div> -->
-            <button ion-button icon-left clear small right (click)="onLoad('Tabung Jumaat')">
-                <ion-icon name="share-alt"></ion-icon>
-                <div>Sedekah Sekarang</div>
-            </button>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-card *ngIf="kebajikan"> 
-            <img src="assets/img/kebajikan2.jpg"/>
-            <ion-card-content>
-              
-              <ion-card-title>
-                Kebajikan Mahasiswa
-                </ion-card-title>
-              <p>
-                Bertanggungjawab untuk mengagihkan zakat dan sumbangan kepada mahasiswa UTM yang tergolong dalam golongan-golongan Asnaf seperti berikut:
-              </p>
-              <div class="border-bottom">
-                <ul class="highlight">
-                  <li>
-                    <ion-icon name="checkmark" class="text-green"></ion-icon>
-                    <span ion-text color="primary">Bantuan kepada fakir dan miskin</span>
-                  </li>
-                  <li>
-                      <ion-icon name="checkmark" class="text-green"></ion-icon>
-                      <span ion-text color="primary">Asnaf Fi Sabilillah</span>
-                  </li>
-                  <li>
-                    <ion-icon name="checkmark" class="text-green"></ion-icon>
-                    <span ion-text color="primary">Bantuan bayaran yuran</span>
-                </li>
-                </ul>
-                
-              </div>
-              <button ion-button icon-left clear small right (click)="onLoad('Kebajikan Mahasiswa')">
-                  <ion-icon name="share-alt"></ion-icon>
-                  <div>Sedekah Sekarang</div>
-              </button>
-            </ion-card-content>
-            
-          </ion-card>
+  
 </ion-content>

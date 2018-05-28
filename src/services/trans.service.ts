@@ -11,29 +11,45 @@ import { AuthService} from './auth';
 export class TransService {
 
     public usertrans : Trans[] = [];
+    public adtrans : Trans = new Trans(new Date(),'','',0,'','');
 
     constructor(private http:Http,private auth:AuthService) {
 
     }
 
 
-    addNewTrans(date:Date,transid:string,type:string,amt:number,status:string){
+    addNewTrans(date:Date,transid:string,type:string,amt:number,status:string,name:string){
         this.usertrans = this.usertrans || [];
         this.usertrans.push({
             transdate:date,
             transid:transid,
             type:type,
             amount:amt,
-            status:status
+            status:status,
+            name:name
         });
     }
 
 
 
+    storeTranss(date:Date,transid:string,type:string,amt:number,status:string,name:string){
+        this.adtrans.transdate = date;
+        this.adtrans.transid = transid;
+        this.adtrans.type = type;
+        this.adtrans.status = status;
+        this.adtrans.name = name;
+        this.adtrans.amount = amt;
+        return this.http
+            .post('https://jominfaq2017.firebaseio.com/transaction.json',this.adtrans)
+            .map((response:Response) => {
+                return response.json();
+            });
+    }
+
     storeTrans(token:string){
         const userId = this.auth.getActiveUser().uid;
         return this.http
-            .put('https://jominfaq2017.firebaseio.com/'+userId+'/transaction.json?auth='+token,this.usertrans)
+            .put('https://jominfaq2017.firebaseio.com/'+userId+'transaction.json?auth='+token,this.usertrans)
             .map((response:Response) => {
                 return response.json();
             });

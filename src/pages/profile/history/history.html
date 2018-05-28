@@ -13,7 +13,7 @@
 <ion-content>
     <ion-list>
         <ion-grid>
-            <ion-item *ngFor="let x of transList.reverse()">
+            <ion-item *ngFor="let x of paymentList | async">
                 <ion-row>
                 <ion-col col-1>
                     <ion-icon name="stats" item-left></ion-icon>
