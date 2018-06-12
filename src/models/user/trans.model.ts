@@ -5,7 +5,8 @@ export class Trans {
         public type:string, 
         public amount:number, 
         public status:string,
-        public name:string) {
+        public name:string,
+        public flag:number) {
 
         }
   }

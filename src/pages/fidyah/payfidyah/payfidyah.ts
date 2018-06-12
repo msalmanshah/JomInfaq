@@ -22,7 +22,7 @@ export class Payfidyah {
     transdate = new Date();
     status:string = "Processing";
     profile : User = new User('','','');
-    trans : Trans = new Trans(new Date(),'','',0,'','');
+    trans : Trans = new Trans(new Date(),'','',0,'','',0);
     amountstr:string;
 
   constructor(public navCtrl: NavController, 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { TransService } from '../../services/trans.service';
 import { Http } from '@angular/http';
 import { AuthService } from '../../services/auth';
@@ -28,7 +28,8 @@ export class PaymentPage {
     private loadingCtrl:LoadingController,
     private translist:TransService,
     private http:Http,
-    private auth:AuthService) {
+    private auth:AuthService,
+    private alertCtrl:AlertController) {
     this.desc = this.navParams.get('type');
     this.icno = this.navParams.get('ic');
     this.name = this.navParams.get('name');
@@ -59,17 +60,11 @@ export class PaymentPage {
     setTimeout(() => {
       loading.dismiss();
 
-      let toast = this.toastCtrl.create({
-        message: 'Transaksi berjaya!',
-        duration: 3000,
-        position: 'top'
+      const alert = this.alertCtrl.create({
+        title: 'Transaksi Berjaya!',
+        buttons: ['OK']
       });
-
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-
-      toast.present();
+      alert.present();
       this.navCtrl.popAll();
 
     }, 2000);

@@ -6,16 +6,18 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth';
 
 import { TabsPage } from '../tabs/tabs';
-
+import 'rxjs/add/operator/map'; 
 import { TransService } from '../../services/trans.service';
 import { Trans } from '../../models/user/trans.model';
+import { Observable } from 'rxjs/Rx';
 
-import 'rxjs/add/operator/map';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { HistoryPage } from './history/history';
 import firebase from 'firebase';
 import { HomePage } from '../home/home';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
+import 'rxjs/Rx';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -30,66 +32,90 @@ import { HomePage } from '../home/home';
 })
 export class ProfilePage {
 
-  profile : User = new User('','','');
-  transList : Trans [] = [];
+  profile: User = new User('', '', '');
+  transList: Trans[] = [];
 
-  show:boolean = true;
+  show: boolean = true;
 
-  email : string = this.auth.getActiveUser().email;
+  email: string = this.auth.getActiveUser().email;
+  registerListRef: AngularFireList<any>;
+  paymentList: Observable<any[]>;
 
-  cameraImage : string;
+  zakatamt:number = 0;
+  fidyahamt:number = 0;
+  infaqamt:number = 0;
+  
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private userlist: UserService,
+    private auth: AuthService,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private translist: TransService,
+    private camera: Camera,
+    private authService: AuthService,
+    public db: AngularFireDatabase) {
 
-  public myPhotosRef: any;
-  public myPhoto: any;
-  public myPhotoURL: any;
+    this.fetchUserInfo();
+    this.fetchTransInfo();
+    this.registerListRef = db.list('transaction', ref => ref.orderByChild('name').equalTo(auth.getActiveUser().email));
+    this.paymentList = this.registerListRef.valueChanges();
+    //.pipe(
+    //   map(changes =>
+    //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+    //   )
+    // );
+    
+    this.paymentList.subscribe(
+      competitors => {
+        competitors.map(competitor =>
+          this.calcTotal(competitor.transid, competitor.amount, competitor.status)
+        );
+      });
+  }
 
-  constructor(public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private userlist:UserService, 
-    private auth:AuthService,
-    private alertCtrl:AlertController,
-    private loadingCtrl:LoadingController,
-    private toastCtrl:ToastController,
-    private translist:TransService,
-    private camera:Camera,
-    private authService:AuthService) {
-
-      this.fetchUserInfo();
-      this.fetchTransInfo();
-      this.myPhotosRef = firebase.storage().ref('/Photos/');
+  calcTotal(id,amt,status){
+    console.log(id,amt,status);
+    if(id === "ZAKAT" && status === "Paid")
+      this.zakatamt = +this.zakatamt + +amt;
+    if(id === "FIDYAH" && status === "Paid")
+      this.fidyahamt = +this.fidyahamt + +amt;
+    if(id === "INFAQ" && status === "Paid")
+      this.infaqamt = +this.infaqamt + +amt;
   }
 
   fetchUserInfo() {
     this.auth.getActiveUser().getToken()
-      .then((token:string)=> {
+      .then((token: string) => {
         this.userlist.fetchUser(token)
           .subscribe((user: User) => {
             this.profile = user;
           },
-          error => {
-            console.log(error);
-          }
-        );
+            error => {
+              console.log(error);
+            }
+          );
       })
   }
 
   fetchTransInfo() {
     this.auth.getActiveUser().getToken()
-      .then((token:string)=> {
+      .then((token: string) => {
         this.translist.fetchTrans(token)
           .subscribe((trans: Trans[]) => {
             this.transList = trans;
-            if(trans == null) {
+            if (trans == null) {
               this.show = false;
             }
             else {
               this.show = true;
             }
           },
-          error => {
-            console.log(error);
-          }
-        );
+            error => {
+              console.log(error);
+            }
+          );
       })
   }
 
@@ -127,42 +153,42 @@ export class ProfilePage {
         {
           text: 'Simpan',
           handler: data => {
-            this.userlist.addUserInfo(data.name,data.tel,data.ic);
+            this.userlist.addUserInfo(data.name, data.tel, data.ic);
             this.auth.getActiveUser().getToken()
-              .then((token:string) => {
+              .then((token: string) => {
                 this.userlist.storeUser(token)
-                  .subscribe ( ( ) => console.log('Success!'),
-                  error => {
-                    console.log('error');
-                  });
+                  .subscribe(() => console.log('Success!'),
+                    error => {
+                      console.log('error');
+                    });
               })
 
-              const loading = this.loadingCtrl.create({
-                content: `
+            const loading = this.loadingCtrl.create({
+              content: `
                   <div class="custom-spinner-container">
                     <div class="custom-spinner-box">Kemaskini Profil..</div>
                   </div>`
+            });
+            loading.present();
+
+            setTimeout(() => {
+              loading.dismiss();
+
+              let toast = this.toastCtrl.create({
+                message: 'Profil berjaya disimpan.',
+                duration: 3000,
+                position: 'top'
               });
-              loading.present();
-          
-              setTimeout(() => {
-                loading.dismiss();
-          
-                let toast = this.toastCtrl.create({
-                  message: 'Profil berjaya disimpan.',
-                  duration: 3000,
-                  position: 'top'
-                });
-          
-                toast.onDidDismiss(() => {
-                  console.log('Dismissed toast');
-                });
-          
-                toast.present();
-                this.navCtrl.setRoot(ProfilePage);
-                this.navCtrl.popToRoot();
-              }, 2000);
-              
+
+              toast.onDidDismiss(() => {
+                console.log('Dismissed toast');
+              });
+
+              toast.present();
+              this.navCtrl.setRoot(ProfilePage);
+              this.navCtrl.popToRoot();
+            }, 2000);
+
           }
         }
       ]
@@ -170,38 +196,15 @@ export class ProfilePage {
     alert.present();
   }
 
-   selectImage() : void
-   {
-      let cameraOptions : CameraOptions = {
-          sourceType         : this.camera.PictureSourceType.PHOTOLIBRARY,
-          destinationType    : this.camera.DestinationType.DATA_URL,
-          quality            : 100,
-          targetWidth        : 320,
-          targetHeight       : 240,
-          encodingType       : this.camera.EncodingType.PNG,
-          correctOrientation : true
-      };
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
-      this.camera.getPicture(cameraOptions)
-      .then((data) =>
-      {
-        this.cameraImage 	= data;
-        this.uploadPhoto();
-      },
-      (error)=> {
-        console.log("err");
-      });
-
-   }
-
-   private uploadPhoto(): void {
-    this.myPhotosRef.child(this.generateUUID()).child('myPhoto.png')
-      .putString(this.myPhoto, 'base64', { contentType: 'image/png' })
-      .then((savedPicture) => {
-        this.myPhotoURL = savedPicture.downloadURL;
-      });
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
- 
+
   private generateUUID(): any {
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
@@ -212,11 +215,11 @@ export class ProfilePage {
     return uuid;
   }
 
-   onTrans(){
-     this.navCtrl.push(HistoryPage);
-   }
+  onTrans() {
+    this.navCtrl.push(HistoryPage);
+  }
 
-   onLogout(){
+  onLogout() {
     let alert = this.alertCtrl.create({
       subTitle: 'Log Keluar Aplikasi?',
       buttons: [
@@ -239,18 +242,7 @@ export class ProfilePage {
 
   }
 
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-    this.navCtrl.setRoot(ProfilePage);
-    this.navCtrl.popToRoot();
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 1000);
-  }
-
-  onHome(){
+  onHome() {
     this.navCtrl.push(HomePage);
   }
 }

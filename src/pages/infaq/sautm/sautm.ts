@@ -38,7 +38,7 @@ export class Sautm {
   param:string;
 
   profile : User = new User('','','');
-  trans : Trans = new Trans(new Date(),'','',0,'','');
+  trans : Trans = new Trans(new Date(),'','',0,'','',0);
 
 
   constructor(public navCtrl: NavController, 

@@ -1,27 +1,23 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    
-    <ion-buttons right>
-      <button ion-button (click)="onHome()">
-        <ion-icon name="information-circle"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title style="text-align:center;">Profil</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+
+        <ion-buttons right>
+            <button ion-button (click)="onHome()">
+                <ion-icon name="information-circle"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title style="text-align:center;">Profil</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="home">
     <ion-refresher (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content
-                pullingIcon="arrow-dropdown"
-                pullingText="Pull to refresh"
-                refreshingSpinner="circles"
-                refreshingText="Refreshing...">
-            </ion-refresher-content>
-        </ion-refresher>
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
     <ion-card>
         <!-- <button ion-button (click)="selectImage()">
             <ion-icon name="camera"></ion-icon>
@@ -31,46 +27,75 @@
                 <ion-icon name="create"></ion-icon>
             </button>
         </ion-fab>
-  
+
         <ion-avatar>
             <img src="assets/img/peopleicon.png" />
         </ion-avatar>
         <ion-card-content>
             <ion-card-title style="text-align:center;">
                 {{profile.name}}
-                
+
             </ion-card-title>
+
+            <hr>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-4>
+                        <ion-avatar>
+                            <img src="assets/img/zakaticon.png" />
+                        </ion-avatar>
+                        <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align: center">ZAKAT</h1>
+                        <!-- <p style="text-align: center">
+                            <strong>RM</strong> {{zakatamt}}</p> -->
+                    </ion-col>
+                    <ion-col col-4>
+                        <ion-avatar>
+                            <img src="assets/img/fidyahicon.png" />
+                        </ion-avatar>
+                        <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align: center">FIDYAH</h1>
+                        <!-- <p style="text-align: center">
+                            <strong>RM</strong> {{fidyahamt}}</p> -->
+                    </ion-col>
+                    <ion-col col-4>
+                        <ion-avatar>
+                            <img src="assets/img/infaqicon.png" />
+                        </ion-avatar>
+                        <h1 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align: center">INFAQ</h1>
+                        <!-- <p style="text-align: center">
+                            <strong>RM</strong> {{infaqamt}}</p> -->
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-card-content>
     </ion-card>
 
-
     <ion-list no-lines>
 
-      <button ion-item>
-          <ion-icon name="mail" item-left></ion-icon>
-          <a class="plainText" >{{email}}</a>
-      </button>
+        <button ion-item>
+            <ion-icon name="mail" item-left></ion-icon>
+            <a class="plainText">{{email}}</a>
+        </button>
 
-      <button ion-item>
-          <ion-icon name="call" item-left></ion-icon>
-          <a class="plainText">{{profile.tel}}</a>
-      </button>
+        <button ion-item>
+            <ion-icon name="call" item-left></ion-icon>
+            <a class="plainText">{{profile.tel}}</a>
+        </button>
 
-      <button ion-item>
+        <button ion-item>
             <ion-icon name="card" item-left></ion-icon>
             <a class="plainText">{{profile.ic}}</a>
         </button>
 
-      <button ion-item item-start *ngIf="show" (click)="onTrans()">
-        <ion-icon name="stats" item-left></ion-icon>
-        Sejarah Transaksi
-        <ion-icon name="arrow-dropright" item-right></ion-icon>
-      </button>
+        <button ion-item item-start (click)="onTrans()">
+            <ion-icon name="stats" item-left></ion-icon>
+            Sejarah Transaksi
+            <ion-icon name="arrow-dropright" item-right></ion-icon>
+        </button>
 
-      <button ion-item item-start  (click)="onLogout()">
-        <ion-icon name="log-out" item-left></ion-icon>
-        Log Keluar
-      </button>
+        <button ion-item item-start (click)="onLogout()">
+            <ion-icon name="log-out" item-left></ion-icon>
+            Log Keluar
+        </button>
 
 
     </ion-list>

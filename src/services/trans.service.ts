@@ -11,7 +11,7 @@ import { AuthService} from './auth';
 export class TransService {
 
     public usertrans : Trans[] = [];
-    public adtrans : Trans = new Trans(new Date(),'','',0,'','');
+    public adtrans : Trans = new Trans(new Date(),'','',0,'','',0);
 
     constructor(private http:Http,private auth:AuthService) {
 
@@ -26,7 +26,8 @@ export class TransService {
             type:type,
             amount:amt,
             status:status,
-            name:name
+            name:name,
+            flag:0
         });
     }
 
@@ -39,6 +40,7 @@ export class TransService {
         this.adtrans.status = status;
         this.adtrans.name = name;
         this.adtrans.amount = amt;
+        this.adtrans.flag = 0;
         return this.http
             .post('https://jominfaq2017.firebaseio.com/transaction.json',this.adtrans)
             .map((response:Response) => {
@@ -66,4 +68,5 @@ export class TransService {
                 this.usertrans = data;
             })
     }
+    
 }
